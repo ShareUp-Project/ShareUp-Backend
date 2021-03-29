@@ -1,23 +1,24 @@
 {
-  "name": "shareup-backend",
+  "name": "clean_ts_express_app",
   "version": "1.0.0",
-  "description": "Share Up project backend",
+  "description": "Typescript Clean Architecture App with Express",
   "main": "app.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/main/server.ts",
+    "start": "ts-node src/app.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShareUp-Project/ShareUp-Backend.git"
+    "url": "git+https://github.com/seungbin9850/Clean_TS_Express_App.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ShareUp-Project/ShareUp-Backend/issues"
+    "url": "https://github.com/seungbin9850/Clean_TS_Express_App/issues"
   },
-  "homepage": "https://github.com/ShareUp-Project/ShareUp-Backend#readme",
+  "homepage": "https://github.com/seungbin9850/Clean_TS_Express_App#readme",
   "dependencies": {
-    "aws-sdk": "^2.861.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -27,14 +28,10 @@
     "lodash": "^4.17.21",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
-    "multer": "^1.4.2",
-    "multer-s3": "^2.9.0",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.31",
-    "uuid4": "^2.0.2",
-    "winston-daily-rotate-file": "^4.5.1",
-    "winston": "^3.3.3"
+    "uuid4": "^2.0.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
@@ -46,11 +43,9 @@
     "@types/lodash": "^4.14.166",
     "@types/morgan": "^1.9.2",
     "@types/mysql": "^2.15.16",
-    "@types/node": "^14.14.14",
-    "@types/winston": "^2.4.4",
-    "module-alias": "^2.2.2"
+    "@types/node": "^14.14.14"
   },
   "_moduleAliases": {
-    "@": "dist"
+    "@": "src"
   }
 }
