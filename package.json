@@ -1,12 +1,12 @@
 {
-  "name": "clean_ts_express_app",
+  "name": "share_up",
   "version": "1.0.0",
   "description": "Typescript Clean Architecture App with Express",
   "main": "app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/main/server.ts",
-    "start": "ts-node src/app.ts"
+    "start": "ts-node src/main/server.ts"
   },
   "repository": {
     "type": "git",
