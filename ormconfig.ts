@@ -1,4 +1,4 @@
-import config from "./src/main/config";
+import config from "./src/main/config/env";
 import { ConnectionOptions } from "typeorm";
 
 const connectionOptions: ConnectionOptions = {
