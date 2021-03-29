@@ -10,7 +10,7 @@ const connectionOptions: ConnectionOptions = {
   database: config.mysql.name,
   synchronize: true,
   logging: true,
-  entities: ["src/entities/*.ts"],
+  entities: ["src/domain/entities/*.ts"],
 };
 
 export default connectionOptions;
