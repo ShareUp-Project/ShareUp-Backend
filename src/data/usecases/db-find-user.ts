@@ -1,5 +1,5 @@
 import { FindUser } from "@/domain/usecase";
-import { FindUserRepository } from "../protocols";
+import { FindUserRepository } from "@/data/protocols";
 
 export class DbFindUser implements FindUser {
   constructor(private readonly findUserRepository: FindUserRepository) {}
