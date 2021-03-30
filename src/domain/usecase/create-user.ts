@@ -4,6 +4,7 @@ export interface CreateUser {
 
 export namespace CreateUser {
   export type Params = {
+    id: string;
     phone: string;
     password: string;
     nickname: string;
