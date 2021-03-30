@@ -8,7 +8,7 @@ export class User {
   @Column({ length: 11, type: "char" })
   phone: string;
 
-  @Column({ length: 50 })
+  @Column({ length: 80 })
   password: string;
 
   @Column({ length: 10 })
