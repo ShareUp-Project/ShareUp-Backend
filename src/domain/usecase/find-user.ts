@@ -1,4 +1,4 @@
-import { User } from "../entities";
+import { User } from "@/domain/entities";
 
 export interface FindUser {
   findOne: (phone: string) => Promise<FindUser.Result>;
