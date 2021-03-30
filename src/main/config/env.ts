@@ -10,5 +10,8 @@ export default {
     password: process.env.DB_PASSWORD,
     name: process.env.DB_NAME,
   },
-  secretKey: process.env.JWT_SECRET,
+  jwt: {
+    access: process.env.JWT_SECRET,
+    refresh: process.env.REFRESH_SECRET,
+  },
 };
