@@ -8,8 +8,5 @@ export class DbCheckCode implements CheckCode {
     const code = await this.getAuthRepository.getAuthCode(data.phone);
 
     return code === data.code;
-
-    // const code = this.getAuthRepository.getAuthCode(data.phone);
-    // return code === data.code;
   }
 }

@@ -18,15 +18,9 @@ export class RedisRepository implements SetAuthRepository, GetAuthRepository {
           reject(e);
           return e;
         }
-
         resolve(data.toString());
         return data.toString();
       });
     });
-
-    // client.get(phone, (e, data) => {
-    //   if (e) return e;
-    //   return data.toString();
-    // });
   }
 }
