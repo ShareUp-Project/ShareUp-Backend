@@ -11,6 +11,7 @@ export class RedisRepository implements SetAuthRepository, GetAuthRepository {
 
   getAuthCode(phone: string): string {
     client.get(phone, (e, data) => {
+      if (e) return e;
       return data;
     });
     return "";
