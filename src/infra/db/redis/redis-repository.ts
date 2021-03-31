@@ -3,7 +3,7 @@ import redis from "redis";
 import env from "@/main/config/env";
 
 const REDIS_HOST = env.redis.host;
-const client = redis.createClient(REDIS_HOST);
+const client = redis.createClient({ host: REDIS_HOST });
 
 export class RedisRepository implements SetAuthRepository, GetAuthRepository {
   setAuthCode(data: SetAuthRepository.Params): void {
