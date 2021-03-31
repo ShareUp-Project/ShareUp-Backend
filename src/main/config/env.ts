@@ -20,4 +20,7 @@ export default {
     secret: process.env.SENS_SECRET_KEY,
     phone: process.env.SENS_PHONE,
   },
+  redis: {
+    host: process.env.REDIS_HOST,
+  },
 };

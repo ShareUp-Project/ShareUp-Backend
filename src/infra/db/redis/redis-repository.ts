@@ -1,7 +1,9 @@
 import { GetAuthRepository, SetAuthRepository } from "@/data/protocols/db";
 import redis from "redis";
+import env from "@/main/config/env";
 
-const client = redis.createClient();
+const REDIS_HOST = env.redis.host;
+const client = redis.createClient(REDIS_HOST);
 
 export class RedisRepository implements SetAuthRepository, GetAuthRepository {
   setAuthCode(data: SetAuthRepository.Params): void {
