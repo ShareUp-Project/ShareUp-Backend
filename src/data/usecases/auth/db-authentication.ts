@@ -1,6 +1,6 @@
 import { Encrypter, FindUserRepository, HashComparer } from "@/data/protocols";
 import { TokenType } from "@/data/protocols/crypto/encrypter";
-import { Authentication } from "@/domain/usecase";
+import { Authentication } from "@/domain/usecases";
 
 export class DbAuthentication implements Authentication {
   constructor(

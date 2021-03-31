@@ -1,4 +1,4 @@
-import { CreateUser, FindUser } from "@/domain/usecase";
+import { CreateUser, FindUser } from "@/domain/usecases";
 import { Controller, HttpResponse } from "@/presentation/protocols";
 import { alreadyExistsData, ok, serverError } from "@/presentation/helpers";
 

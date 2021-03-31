@@ -1,4 +1,4 @@
-import { CreateUser } from "@/domain/usecase";
+import { CreateUser } from "@/domain/usecases";
 import { Hasher, MakeId } from "@/data/protocols";
 import { CreateUserRepository } from "@/data/protocols/db";
 

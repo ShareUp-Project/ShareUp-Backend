@@ -1,4 +1,4 @@
-import { CreateUser } from "@/domain/usecase";
+import { CreateUser } from "@/domain/usecases";
 
 export interface CreateUserRepository {
   create: (data: CreateUserRepository.Params) => Promise<void>;

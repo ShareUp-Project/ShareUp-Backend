@@ -1,4 +1,4 @@
-import { FindUser } from "@/domain/usecase";
+import { FindUser } from "@/domain/usecases";
 
 export interface FindUserRepository {
   findOne: (phone: string) => Promise<FindUserRepository.Result>;

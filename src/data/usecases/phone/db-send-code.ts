@@ -1,5 +1,5 @@
 import { MakeCode, SendMessage, SetAuthRepository } from "@/data/protocols";
-import { SendCode } from "@/domain/usecase";
+import { SendCode } from "@/domain/usecases";
 
 export class DbSendCode implements SendCode {
   constructor(

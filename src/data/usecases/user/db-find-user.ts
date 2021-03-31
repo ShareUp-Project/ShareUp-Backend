@@ -1,4 +1,4 @@
-import { FindUser } from "@/domain/usecase";
+import { FindUser } from "@/domain/usecases";
 import { FindUserRepository } from "@/data/protocols";
 
 export class DbFindUser implements FindUser {

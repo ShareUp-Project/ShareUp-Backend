@@ -1,5 +1,5 @@
 import { DbAuthentication } from "@/data/usecases";
-import { Authentication } from "@/domain/usecase";
+import { Authentication } from "@/domain/usecases";
 import { BcryptAdapter } from "@/infra/crypto";
 import { UserRepository } from "@/infra/db";
 import { JwtAdapter } from "@/infra/jwt";

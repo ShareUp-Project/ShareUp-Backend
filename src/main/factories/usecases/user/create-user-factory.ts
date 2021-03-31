@@ -1,5 +1,5 @@
 import { DbCreateUser } from "@/data/usecases";
-import { CreateUser } from "@/domain/usecase";
+import { CreateUser } from "@/domain/usecases";
 import { BcryptAdapter } from "@/infra/crypto";
 import { UserRepository } from "@/infra/db";
 import { UuidAdapter } from "@/infra/uuid";

@@ -1,5 +1,5 @@
 import { DbSendCode } from "@/data/usecases/phone/db-send-code";
-import { SendCode } from "@/domain/usecase";
+import { SendCode } from "@/domain/usecases";
 import { CodeAdapter } from "@/infra/code";
 import { RedisRepository } from "@/infra/db/redis/redis-repository";
 import { SendMessageAdapter } from "@/infra/phone";
