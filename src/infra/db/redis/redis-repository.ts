@@ -12,10 +12,11 @@ export class RedisRepository implements SetAuthRepository, GetAuthRepository {
   }
 
   getAuthCode(phone: string): string {
+    let code = "";
     client.get(phone, (e, data) => {
       if (e) return e;
-      return data;
+      code = data;
     });
-    return "";
+    return code;
   }
 }
