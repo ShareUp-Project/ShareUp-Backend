@@ -11,10 +11,22 @@ export class RedisRepository implements SetAuthRepository, GetAuthRepository {
     client.expire(data.phone, 180);
   }
 
-  getAuthCode(phone: string): any {
-    client.get(phone, (e, data) => {
-      if (e) return e;
-      return data.toString();
+  getAuthCode(phone: string): Promise<Error | string> {
+    return new Promise((resolve, reject) => {
+      client.get(phone, (e, data) => {
+        if (e) {
+          reject(e);
+          return e;
+        }
+
+        resolve(data.toString());
+        return data.toString();
+      });
     });
+
+    // client.get(phone, (e, data) => {
+    //   if (e) return e;
+    //   return data.toString();
+    // });
   }
 }
