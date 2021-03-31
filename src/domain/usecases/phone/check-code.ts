@@ -1,5 +1,5 @@
 export interface CheckCode {
-  check: (data: CheckCode.Params) => boolean;
+  check: (data: CheckCode.Params) => Promise<boolean>;
 }
 
 export namespace CheckCode {
