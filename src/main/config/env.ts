@@ -14,4 +14,10 @@ export default {
     access: process.env.JWT_SECRET,
     refresh: process.env.REFRESH_SECRET,
   },
+  sens: {
+    id: process.env.SENS_SERVICE_ID,
+    access: process.env.SENS_ACCESS_KEY,
+    secret: process.env.SENS_SECRET_KEY,
+    phone: process.env.SENS_PHONE,
+  },
 };
