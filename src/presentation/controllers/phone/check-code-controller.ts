@@ -7,7 +7,7 @@ export class CheckCodeController implements Controller {
 
   async handle(request: CheckCodeController.Request): Promise<HttpResponse> {
     try {
-      const result = this.checkCode.check(request);
+      const result = await this.checkCode.check(request);
       if (!result) return unauthorized();
       return ok({ message: "success" });
     } catch (e) {
