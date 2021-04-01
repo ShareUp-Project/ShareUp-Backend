@@ -20,4 +20,13 @@ export class UserRepository
       .where("phone = :phone", { phone })
       .getOne();
   }
+
+  public async findOneByNickname(
+    nickname: string
+  ): Promise<FindUserRepository.Result> {
+    return await getRepository(User)
+      .createQueryBuilder("user")
+      .where("nickname = :nickname", { nickname })
+      .getOne();
+  }
 }
