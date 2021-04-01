@@ -4,11 +4,7 @@ import {
   makeSendCodeController,
 } from "@/main/factories";
 import { Parameters, validationMiddleware } from "@/main/middlewares";
-import {
-  CheckCodeBodySchema,
-  CheckCodeQuerySchema,
-  SendCodeSchema,
-} from "@/validator/schemas";
+import { CheckCodeSchema, SendCodeSchema } from "@/validator/schemas";
 
 import { Router } from "express";
 
@@ -25,11 +21,7 @@ export default (router: Router): void => {
   router.post(
     "/phone/check",
     validationMiddleware({
-      schema: CheckCodeQuerySchema,
-      parameters: Parameters.QUERY,
-    }),
-    validationMiddleware({
-      schema: CheckCodeBodySchema,
+      schema: CheckCodeSchema,
       parameters: Parameters.BODY,
     }),
     adaptRoute(makeCheckCodeController())
