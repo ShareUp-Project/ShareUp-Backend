@@ -7,4 +7,8 @@ export class DbFindUser implements FindUser {
   async findOne(phone: string): Promise<FindUser.Result> {
     return await this.findUserRepository.findOne(phone);
   }
+
+  async findOneByNickname(nickname: string): Promise<FindUser.Result> {
+    return await this.findUserRepository.findOneByNickname(nickname);
+  }
 }
