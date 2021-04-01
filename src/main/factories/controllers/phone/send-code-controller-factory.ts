@@ -1,7 +1,6 @@
 import { SendCodeController } from "@/presentation/controllers";
 import { Controller } from "@/presentation/protocols";
-import { makeDbSendCode } from "@/main/factories";
-import { makeDbFindUser } from "../../usecases";
+import { makeDbSendCode, makeDbFindUser } from "@/main/factories";
 
 export const makeSendCodeController = (): Controller => {
   return new SendCodeController(makeDbSendCode(), makeDbFindUser());
