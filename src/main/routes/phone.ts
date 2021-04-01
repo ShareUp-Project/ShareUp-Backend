@@ -1,6 +1,7 @@
 import { adaptRoute } from "@/main/adapters";
 import {
   makeCheckCodeController,
+  makeSendCodeChangePasswordController,
   makeSendCodeController,
 } from "@/main/factories";
 import { Parameters, validationMiddleware } from "@/main/middlewares";
@@ -25,5 +26,14 @@ export default (router: Router): void => {
       parameters: Parameters.BODY,
     }),
     adaptRoute(makeCheckCodeController())
+  );
+
+  router.post(
+    "/phone/password",
+    validationMiddleware({
+      schema: SendCodeSchema,
+      parameters: Parameters.BODY,
+    }),
+    adaptRoute(makeSendCodeChangePasswordController())
   );
 };
