@@ -4,6 +4,7 @@ import {
   ServerError,
   UnauthorizedError,
 } from "@/presentation/errors";
+import { NotFound } from "../errors/not-found";
 
 export const badRequest = (error: Error): HttpResponse => ({
   statusCode: 400,
@@ -18,6 +19,11 @@ export const unauthorized = (): HttpResponse => ({
 export const forbidden = (error: Error): HttpResponse => ({
   statusCode: 403,
   body: error,
+});
+
+export const notFound = (): HttpResponse => ({
+  statusCode: 404,
+  body: new NotFound(),
 });
 
 export const alreadyExistsData = (): HttpResponse => ({
