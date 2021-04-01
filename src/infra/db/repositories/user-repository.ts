@@ -1,10 +1,17 @@
-import { CreateUserRepository, FindUserRepository } from "@/data/protocols";
+import {
+  ChangePasswordRepository,
+  CreateUserRepository,
+  FindUserRepository,
+} from "@/data/protocols";
 import { User } from "@/domain/entities";
 import { EntityRepository, getRepository } from "typeorm";
 
 @EntityRepository(User)
 export class UserRepository
-  implements CreateUserRepository, FindUserRepository {
+  implements
+    CreateUserRepository,
+    FindUserRepository,
+    ChangePasswordRepository {
   public async create(data: CreateUserRepository.Params): Promise<void> {
     await getRepository(User)
       .createQueryBuilder("user")
@@ -28,5 +35,14 @@ export class UserRepository
       .createQueryBuilder("user")
       .where("nickname = :nickname", { nickname })
       .getOne();
+  }
+
+  public async change(data: ChangePasswordRepository.Params): Promise<void> {
+    await getRepository(User)
+      .createQueryBuilder("user")
+      .update(User)
+      .set({ password: data.password })
+      .where("phone = :phone", { phone: data.phone })
+      .execute();
   }
 }
