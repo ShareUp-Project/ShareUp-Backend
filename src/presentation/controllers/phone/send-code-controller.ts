@@ -15,7 +15,6 @@ export class SendCodeController implements Controller {
       this.sendCode.send(request.phone);
       return ok({ message: "success" });
     } catch (e) {
-      console.log(e.message);
       return serverError(e);
     }
   }
