@@ -4,9 +4,14 @@ import {
   makeSignupController,
 } from "@/main/factories";
 import { Parameters, validationMiddleware } from "@/main/middlewares";
-import { CreateUserSchema, NicknameCheckSchema } from "@/validator/schemas";
+import {
+  ChangePasswordSchema,
+  CreateUserSchema,
+  NicknameCheckSchema,
+} from "@/validator/schemas";
 
 import { Router } from "express";
+import { makeChangePasswordController } from "../factories/controllers/user/change-password-controller-factory";
 
 export default (router: Router): void => {
   router.post(
@@ -24,5 +29,13 @@ export default (router: Router): void => {
       parameters: Parameters.BODY,
     }),
     adaptRoute(makeNicknameCheckController())
+  );
+  router.put(
+    "/user/password",
+    validationMiddleware({
+      schema: ChangePasswordSchema,
+      parameters: Parameters.BODY,
+    }),
+    adaptRoute(makeChangePasswordController())
   );
 };
