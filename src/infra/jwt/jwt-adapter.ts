@@ -11,11 +11,11 @@ export class JwtAdapter implements Encrypter, Decrypter {
   async encrypt(plaintext: string, type: TokenType): Promise<string> {
     switch (type) {
       case "access":
-        return sign({ phone: plaintext }, this.accessSecret, {
+        return sign({ id: plaintext }, this.accessSecret, {
           expiresIn: "1h",
         });
       case "refresh":
-        return sign({ phone: plaintext }, this.refreshSecret, {
+        return sign({ id: plaintext }, this.refreshSecret, {
           expiresIn: "1w",
         });
     }

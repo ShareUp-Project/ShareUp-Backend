@@ -18,11 +18,11 @@ export class DbAuthentication implements Authentication {
     );
     if (passwordCompareResult) {
       const accessToken = await this.encrypter.encrypt(
-        data.phone,
+        user.id,
         TokenType.ACCESS
       );
       const refreshToken = await this.encrypter.encrypt(
-        data.phone,
+        user.id,
         TokenType.REFRESH
       );
       return { accessToken, refreshToken };
