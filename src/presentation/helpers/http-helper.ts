@@ -3,8 +3,8 @@ import {
   AlreadyExistsError,
   ServerError,
   UnauthorizedError,
+  NotFound,
 } from "@/presentation/errors";
-import { NotFound } from "../errors/not-found";
 
 export const badRequest = (error: Error): HttpResponse => ({
   statusCode: 400,
