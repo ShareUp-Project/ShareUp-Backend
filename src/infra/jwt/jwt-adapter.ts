@@ -1,4 +1,4 @@
-import { Decrypter, Encrypter, TokenType } from "@/data/protocols";
+import { Decrypter, Encrypter } from "@/data/protocols";
 
 import { sign, verify } from "jsonwebtoken";
 
@@ -8,25 +8,42 @@ export class JwtAdapter implements Encrypter, Decrypter {
     private readonly refreshSecret: string
   ) {}
 
-  async encrypt(plaintext: string, type: TokenType): Promise<string> {
-    switch (type) {
-      case "access":
-        return sign({ id: plaintext }, this.accessSecret, {
-          expiresIn: "1h",
-        });
-      case "refresh":
-        return sign({ id: plaintext }, this.refreshSecret, {
-          expiresIn: "1w",
-        });
+  async encryptAccess(id: string): Promise<string> {
+    return sign({ id }, this.accessSecret, {
+      expiresIn: "1h",
+    });
+  }
+
+  async encryptRefresh(id: string): Promise<string> {
+    return sign({ id }, this.refreshSecret, {
+      expiresIn: "1w",
+    });
+  }
+
+  async decryptAccess(token: string): Promise<JwtAdapter.Result> {
+    const bearer = token.split("Bearer ")[1];
+    try {
+      const decoded = await verify(bearer, this.accessSecret);
+      return { decoded };
+    } catch (e) {
+      return { error: e };
     }
   }
 
-  async decrypt(ciphertext: string, type: TokenType): Promise<string> {
-    switch (type) {
-      case "access":
-        return verify(ciphertext, this.accessSecret) as any;
-      case "refresh":
-        return verify(ciphertext, this.refreshSecret) as any;
+  async decryptRefresh(token: string): Promise<JwtAdapter.Result> {
+    const bearer = token.split("Bearer ")[1];
+    try {
+      const decoded = await verify(bearer, this.refreshSecret);
+      return { decoded };
+    } catch (e) {
+      return { error: e };
     }
   }
+}
+
+export namespace JwtAdapter {
+  export type Result = {
+    error?: Error;
+    decoded?: string | object;
+  };
 }

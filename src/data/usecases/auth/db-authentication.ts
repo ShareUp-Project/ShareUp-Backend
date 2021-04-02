@@ -1,5 +1,4 @@
 import { Encrypter, FindUserRepository, HashComparer } from "@/data/protocols";
-import { TokenType } from "@/data/protocols/crypto/encrypter";
 import { Authentication } from "@/domain/usecases";
 
 export class DbAuthentication implements Authentication {
@@ -17,14 +16,8 @@ export class DbAuthentication implements Authentication {
       user.password
     );
     if (passwordCompareResult) {
-      const accessToken = await this.encrypter.encrypt(
-        user.id,
-        TokenType.ACCESS
-      );
-      const refreshToken = await this.encrypter.encrypt(
-        user.id,
-        TokenType.REFRESH
-      );
+      const accessToken = await this.encrypter.encryptAccess(user.id);
+      const refreshToken = await this.encrypter.encryptRefresh(user.id);
       return { accessToken, refreshToken };
     }
     return null;
