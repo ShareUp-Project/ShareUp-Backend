@@ -1,6 +1,9 @@
 import { adaptRoute } from "@/main/adapters";
-import { makeLoginController } from "@/main/factories";
-import { Parameters, validationMiddleware } from "@/main/middlewares";
+import {
+  makeLoginController,
+  makeTokenRefreshController,
+} from "@/main/factories";
+import { Parameters, refresh, validationMiddleware } from "@/main/middlewares";
 import { AuthenticationSchema } from "@/validator/schemas";
 
 import { Router } from "express";
@@ -13,5 +16,11 @@ export default (router: Router): void => {
       parameters: Parameters.BODY,
     }),
     adaptRoute(makeLoginController())
+  );
+
+  router.get(
+    "/auth/refresh",
+    refresh,
+    adaptRoute(makeTokenRefreshController())
   );
 };
