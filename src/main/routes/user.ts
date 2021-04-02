@@ -2,6 +2,7 @@ import { adaptRoute } from "@/main/adapters";
 import {
   makeNicknameCheckController,
   makeSignupController,
+  makeChangePasswordController,
 } from "@/main/factories";
 import { Parameters, validationMiddleware } from "@/main/middlewares";
 import {
@@ -11,7 +12,6 @@ import {
 } from "@/validator/schemas";
 
 import { Router } from "express";
-import { makeChangePasswordController } from "../factories/controllers/user/change-password-controller-factory";
 
 export default (router: Router): void => {
   router.post(
