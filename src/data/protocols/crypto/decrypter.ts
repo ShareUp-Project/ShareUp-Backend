@@ -5,7 +5,7 @@ export interface Decrypter {
 
 export namespace Decrypter {
   export type Result = {
-    e?: Error;
+    error?: Error;
     decoded?: string | object;
   };
 }
