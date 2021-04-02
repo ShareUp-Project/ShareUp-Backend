@@ -4,3 +4,4 @@ export * from "./missing-param";
 export * from "./server-error";
 export * from "./unauthorized";
 export * from "./already-exists";
+export * from "./not-found";
