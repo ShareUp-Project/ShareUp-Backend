@@ -1,8 +1,11 @@
 export interface Decrypter {
-  decrypt: (ciphertext: string, type: TokenType) => Promise<string>;
+  decryptAccess: (token: string) => Promise<Decrypter.Result>;
+  decryptRefresh: (token: string) => Promise<Decrypter.Result>;
 }
 
-export enum TokenType {
-  ACCESS = "access",
-  REFRESH = "refresh",
+export namespace Decrypter {
+  export type Result = {
+    e?: Error;
+    decoded?: string | object;
+  };
 }
