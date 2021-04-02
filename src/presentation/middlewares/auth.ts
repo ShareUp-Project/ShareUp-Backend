@@ -8,8 +8,8 @@ export class AuthMiddleware implements Middleware {
   async handle(request: AuthMiddleware.Request): Promise<HttpResponse> {
     if (!request.token) return unauthorized();
     const token: string = request.token.split("Bearer ")[1];
-    const { e, decoded } = await this.decrypter.decryptAccess(token);
-    if (e) return forbidden(e);
+    const { error, decoded } = await this.decrypter.decryptAccess(token);
+    if (error) return forbidden(error);
     return ok({ decoded });
   }
 }
