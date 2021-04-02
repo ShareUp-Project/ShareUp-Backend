@@ -8,8 +8,8 @@ export class RefreshMiddleware implements Middleware {
   async handle(request: RefreshMiddleware.Request): Promise<HttpResponse> {
     if (!request.token) return unauthorized();
     const token: string = request.token.split("Bearer ")[1];
-    const { e, decoded } = await this.decrypter.decryptRefresh(token);
-    if (e) return forbidden(e);
+    const { error, decoded } = await this.decrypter.decryptRefresh(token);
+    if (error) return forbidden(error);
     return ok({ decoded });
   }
 }
