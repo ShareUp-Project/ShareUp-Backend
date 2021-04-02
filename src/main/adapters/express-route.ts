@@ -7,6 +7,7 @@ export const adaptRoute = (controller: Controller) => {
       ...(req.body || {}),
       ...(req.params || {}),
       ...(req.query || {}),
+      ...(req["decoded"] || {}),
     };
     const httpResponse = await controller.handle(request);
     if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {
