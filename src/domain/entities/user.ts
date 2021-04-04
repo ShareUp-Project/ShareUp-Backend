@@ -1,5 +1,5 @@
 import { Entity, PrimaryColumn, Column, OneToMany } from "typeorm";
-import { Post } from "@/domain/entities";
+import { Post, Scrap } from "@/domain/entities";
 
 @Entity()
 export class User {
@@ -17,4 +17,7 @@ export class User {
 
   @OneToMany((type) => Post, (post) => post.user)
   posts!: Post[];
+
+  @OneToMany((type) => Scrap, (scrap) => scrap.user)
+  scraps!: Scrap[];
 }
