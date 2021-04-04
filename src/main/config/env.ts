@@ -27,5 +27,6 @@ export default {
     access: process.env.S3_ACCESS,
     secret: process.env.S3_SECRET,
     region: process.env.S3_REGION,
+    name: process.env.S3_NAME,
   },
 };
