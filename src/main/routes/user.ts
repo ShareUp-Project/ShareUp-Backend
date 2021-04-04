@@ -15,7 +15,7 @@ import { Router } from "express";
 
 export default (router: Router): void => {
   router.post(
-    "/user",
+    "/users",
     validationMiddleware({
       schema: CreateUserSchema,
       parameters: Parameters.BODY,
@@ -23,7 +23,7 @@ export default (router: Router): void => {
     adaptRoute(makeSignupController())
   );
   router.post(
-    "/user/nickname",
+    "/users/nickname",
     validationMiddleware({
       schema: NicknameCheckSchema,
       parameters: Parameters.BODY,
@@ -31,7 +31,7 @@ export default (router: Router): void => {
     adaptRoute(makeNicknameCheckController())
   );
   router.put(
-    "/user/password",
+    "/users/password",
     validationMiddleware({
       schema: ChangePasswordSchema,
       parameters: Parameters.BODY,
