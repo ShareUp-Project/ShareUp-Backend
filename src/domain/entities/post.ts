@@ -6,7 +6,18 @@ import {
   OneToMany,
   PrimaryColumn,
 } from "typeorm";
-import { User, Image, Hashtag } from "@/domain/entities";
+import { User, Image, Hashtag, Scrap } from "@/domain/entities";
+
+export enum Category {
+  PAPER = "paper",
+  PLASTIC = "plastic",
+  GLASS = "glass",
+  STYROFOAM = "styrofoam",
+  VINYL = "vinyl",
+  CAN = "can",
+  CLOTHING = "clothing",
+  ETC = "etc",
+}
 
 @Entity()
 export class Post {
@@ -18,6 +29,9 @@ export class Post {
 
   @Column({ name: "user_id", length: 45 })
   userId: string;
+
+  @Column({ type: "enum", enum: Category })
+  category: Category;
 
   @ManyToOne((type) => User, (user) => user.id, {
     onUpdate: "CASCADE",
@@ -31,4 +45,7 @@ export class Post {
 
   @OneToMany((type) => Hashtag, (hashtag) => hashtag.post)
   hashtags!: Hashtag[];
+
+  @OneToMany((type) => Scrap, (scrap) => scrap.post)
+  scraps!: Scrap[];
 }
