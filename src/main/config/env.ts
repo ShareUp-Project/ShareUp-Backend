@@ -23,4 +23,9 @@ export default {
   redis: {
     host: process.env.REDIS_HOST,
   },
+  s3: {
+    access: process.env.S3_ACCESS,
+    secret: process.env.S3_SECRET,
+    region: process.env.S3_REGION,
+  },
 };
