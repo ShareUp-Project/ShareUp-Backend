@@ -7,6 +7,7 @@ export interface WritePost {
 export namespace WritePost {
   export type Params = {
     id: string;
+    title: string;
     content: string;
     category: Category;
     userId: string;
