@@ -11,7 +11,7 @@ import { Router } from "express";
 
 export default (router: Router): void => {
   router.post(
-    "/phone",
+    "/phones",
     validationMiddleware({
       schema: SendCodeSchema,
       parameters: Parameters.BODY,
@@ -20,7 +20,7 @@ export default (router: Router): void => {
   );
 
   router.post(
-    "/phone/check",
+    "/phones/check",
     validationMiddleware({
       schema: CheckCodeSchema,
       parameters: Parameters.BODY,
@@ -29,7 +29,7 @@ export default (router: Router): void => {
   );
 
   router.post(
-    "/phone/password",
+    "/phones/password",
     validationMiddleware({
       schema: SendCodeSchema,
       parameters: Parameters.BODY,
