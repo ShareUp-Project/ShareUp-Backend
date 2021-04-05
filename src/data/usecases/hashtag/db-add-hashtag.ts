@@ -9,6 +9,6 @@ export class DbAddHashtag implements AddHashtag {
 
   async add(data: AddHashtag.Params): Promise<void> {
     const id: string = await this.makeId.makeId();
-    await this.addHashtagRepository.add({ id, ...data });
+    await this.addHashtagRepository.add({ ...data, id });
   }
 }
