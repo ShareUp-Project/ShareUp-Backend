@@ -33,6 +33,9 @@ export class Post {
   @Column({ type: "enum", enum: Category })
   category: Category;
 
+  @Column({ default: 0 })
+  views: number;
+
   @ManyToOne((type) => User, (user) => user.id, {
     onUpdate: "CASCADE",
     onDelete: "CASCADE",
