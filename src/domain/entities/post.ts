@@ -24,6 +24,9 @@ export class Post {
   @PrimaryColumn({ length: 45 })
   id: string;
 
+  @Column({ length: 50 })
+  title: string;
+
   @Column({ length: 500 })
   content: string;
 
