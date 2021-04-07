@@ -9,9 +9,14 @@ import {
   auth,
   uploadMiddleware,
 } from "@/main/middlewares";
-import { GetPostsSchema, WritePostSchema } from "@/validator/schemas";
+import {
+  GetPostsSchema,
+  ScrapPostsSchema,
+  WritePostSchema,
+} from "@/validator/schemas";
 
 import { Router } from "express";
+import { makeScrapPostController } from "../factories/controllers/scrap/scrap-post-controller-factory";
 
 export default (router: Router): void => {
   router.post(
@@ -32,5 +37,14 @@ export default (router: Router): void => {
       parameters: Parameters.QUERY,
     }),
     adaptRoute(makeGetPostsController())
+  );
+  router.post(
+    "/posts/scraps/:id",
+    auth,
+    validationMiddleware({
+      schema: ScrapPostsSchema,
+      parameters: Parameters.PARAM,
+    }),
+    adaptRoute(makeScrapPostController())
   );
 };
