@@ -1,7 +1,9 @@
 import { adaptRoute } from "@/main/adapters";
 import {
+  makeDeletePostController,
   makeGetPostsController,
   makeWritePostController,
+  makeScrapPostController,
 } from "@/main/factories";
 import {
   Parameters,
@@ -10,13 +12,13 @@ import {
   uploadMiddleware,
 } from "@/main/middlewares";
 import {
+  DeletePostsSchema,
   GetPostsSchema,
   ScrapPostsSchema,
   WritePostSchema,
 } from "@/validator/schemas";
 
 import { Router } from "express";
-import { makeScrapPostController } from "../factories/controllers/scrap/scrap-post-controller-factory";
 
 export default (router: Router): void => {
   router.post(
@@ -46,5 +48,14 @@ export default (router: Router): void => {
       parameters: Parameters.PARAM,
     }),
     adaptRoute(makeScrapPostController())
+  );
+  router.delete(
+    "/posts/:id",
+    auth,
+    validationMiddleware({
+      schema: DeletePostsSchema,
+      parameters: Parameters.PARAM,
+    }),
+    adaptRoute(makeDeletePostController())
   );
 };
