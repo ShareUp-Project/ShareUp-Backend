@@ -1,2 +1,4 @@
 export * from "./write-post-factory";
 export * from "./get-posts-factory";
+export * from "./delete-post-factory";
+export * from "./find-post-factory";
