@@ -6,8 +6,6 @@ services:
     ports:
       - "6379:6379"
   shareup:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: "seungbin9850/shareup:latest"
     ports:
       - "80:3000"
