@@ -5,7 +5,6 @@ WORKDIR /app
 ADD . /app
 
 RUN npm ci
-RUN npm i ts-node
 RUN npm i typescript
 RUN npm run build
 
