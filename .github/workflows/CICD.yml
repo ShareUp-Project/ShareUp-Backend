@@ -30,9 +30,6 @@ jobs:
 
       - name: Dependencies Installation
         run: npm ci
-
-      - name: start
-        run: npm start
   CD:
     runs-on: ubuntu-latest
     needs: CI
