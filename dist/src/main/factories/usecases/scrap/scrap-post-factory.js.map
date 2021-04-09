@@ -1,1 +1,0 @@
-{"version":3,"file":"scrap-post-factory.js","sourceRoot":"","sources":["../../../../../../src/main/factories/usecases/scrap/scrap-post-factory.ts"],"names":[],"mappings":";;;AAAA,8CAA8C;AAE9C,mCAA6C;AAEhC,QAAA,eAAe,GAAG,GAAc,EAAE;IAC7C,MAAM,mBAAmB,GAAG,IAAI,oBAAe,EAAE,CAAC;IAClD,OAAO,IAAI,sBAAW,CAAC,mBAAmB,CAAC,CAAC;AAC9C,CAAC,CAAC"}
