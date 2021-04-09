@@ -1,0 +1,1 @@
+{"version":3,"file":"delete-post-factory.js","sourceRoot":"","sources":["../../../../../../src/main/factories/usecases/post/delete-post-factory.ts"],"names":[],"mappings":";;;AAAA,8CAA+C;AAE/C,mCAA4C;AAE/B,QAAA,gBAAgB,GAAG,GAAe,EAAE;IAC/C,MAAM,cAAc,GAAG,IAAI,mBAAc,EAAE,CAAC;IAC5C,OAAO,IAAI,uBAAY,CAAC,cAAc,CAAC,CAAC;AAC1C,CAAC,CAAC"}

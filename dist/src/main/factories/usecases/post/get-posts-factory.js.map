@@ -1,0 +1,1 @@
+{"version":3,"file":"get-posts-factory.js","sourceRoot":"","sources":["../../../../../../src/main/factories/usecases/post/get-posts-factory.ts"],"names":[],"mappings":";;;AAAA,8CAA6C;AAE7C,mCAA4C;AAE/B,QAAA,cAAc,GAAG,GAAa,EAAE;IAC3C,MAAM,cAAc,GAAG,IAAI,mBAAc,EAAE,CAAC;IAC5C,OAAO,IAAI,qBAAU,CAAC,cAAc,CAAC,CAAC;AACxC,CAAC,CAAC"}

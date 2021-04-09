@@ -1,0 +1,1 @@
+{"version":3,"file":"db-delete-post.js","sourceRoot":"","sources":["../../../../../src/data/usecases/post/db-delete-post.ts"],"names":[],"mappings":";;;AAGA,MAAa,YAAY;IACvB,YAA6B,oBAA0C;QAA1C,yBAAoB,GAApB,oBAAoB,CAAsB;IAAG,CAAC;IAE3E,KAAK,CAAC,MAAM,CAAC,IAAuB;QAClC,MAAM,IAAI,CAAC,oBAAoB,CAAC,MAAM,CAAC,IAAI,CAAC,CAAC;IAC/C,CAAC;CACF;AAND,oCAMC"}
