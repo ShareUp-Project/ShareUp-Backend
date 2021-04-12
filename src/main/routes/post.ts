@@ -4,6 +4,7 @@ import {
   makeGetPostsController,
   makeWritePostController,
   makeScrapPostController,
+  makeGetScrapPostsController,
 } from "@/main/factories";
 import {
   Parameters,
@@ -48,6 +49,15 @@ export default (router: Router): void => {
       parameters: Parameters.PARAM,
     }),
     adaptRoute(makeScrapPostController())
+  );
+  router.get(
+    "/posts/scraps",
+    auth,
+    validationMiddleware({
+      schema: GetPostsSchema,
+      parameters: Parameters.QUERY,
+    }),
+    adaptRoute(makeGetScrapPostsController())
   );
   router.delete(
     "/posts/:id",
