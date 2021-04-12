@@ -5,6 +5,7 @@ import {
   makeWritePostController,
   makeScrapPostController,
   makeGetScrapPostsController,
+  makeCancleScrapController,
 } from "@/main/factories";
 import {
   Parameters,
@@ -67,5 +68,14 @@ export default (router: Router): void => {
       parameters: Parameters.PARAM,
     }),
     adaptRoute(makeDeletePostController())
+  );
+  router.delete(
+    "/posts/scraps/:id",
+    auth,
+    validationMiddleware({
+      schema: DeletePostsSchema,
+      parameters: Parameters.PARAM,
+    }),
+    adaptRoute(makeCancleScrapController())
   );
 };
