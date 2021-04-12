@@ -11,4 +11,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./scrap-post-controller-factory"), exports);
+__exportStar(require("./cancle-scrap-controller-factory"), exports);
 //# sourceMappingURL=index.js.map

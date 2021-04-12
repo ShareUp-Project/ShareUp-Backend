@@ -18,6 +18,15 @@ let ScrapRepository = class ScrapRepository {
             .values(data)
             .execute();
     }
+    async cancle(data) {
+        await typeorm_1.getRepository(entities_1.Scrap)
+            .createQueryBuilder("scrap")
+            .delete()
+            .from(entities_1.Scrap)
+            .where("userId = :userId", { userId: data.userId })
+            .andWhere("postId = :postId", { postId: data.id })
+            .execute();
+    }
 };
 ScrapRepository = __decorate([
     typeorm_1.EntityRepository(entities_1.Scrap)

@@ -25,5 +25,9 @@ exports.default = (router) => {
         schema: schemas_1.DeletePostsSchema,
         parameters: middlewares_1.Parameters.PARAM,
     }), adapters_1.adaptRoute(factories_1.makeDeletePostController()));
+    router.delete("/posts/scraps/:id", middlewares_1.auth, middlewares_1.validationMiddleware({
+        schema: schemas_1.DeletePostsSchema,
+        parameters: middlewares_1.Parameters.PARAM,
+    }), adapters_1.adaptRoute(factories_1.makeCancleScrapController()));
 };
 //# sourceMappingURL=post.js.map

@@ -15,7 +15,6 @@ class GetScrapPostsController {
             userId: request.identity,
             page: Number(request.page),
         });
-        console.log(data);
         const response = lodash_1.default.map(data, (e) => {
             e.hashtags = e.hashtags.map((e) => e.tag);
             e.images = e.images.map((e) => e.id);

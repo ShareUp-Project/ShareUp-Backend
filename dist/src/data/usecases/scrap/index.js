@@ -11,4 +11,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./db-scrap-post"), exports);
+__exportStar(require("./db-cancle-scrap"), exports);
 //# sourceMappingURL=index.js.map
