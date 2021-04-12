@@ -1,0 +1,1 @@
+{"version":3,"file":"db-get-scrap-posts.js","sourceRoot":"","sources":["../../../../../src/data/usecases/post/db-get-scrap-posts.ts"],"names":[],"mappings":";;;AAGA,MAAa,eAAe;IAC1B,YACmB,uBAAgD;QAAhD,4BAAuB,GAAvB,uBAAuB,CAAyB;IAChE,CAAC;IAEJ,KAAK,CAAC,QAAQ,CAAC,IAA0B;QACvC,OAAO,MAAM,IAAI,CAAC,uBAAuB,CAAC,QAAQ,CAAC,IAAI,CAAC,CAAC;IAC3D,CAAC;CACF;AARD,0CAQC"}

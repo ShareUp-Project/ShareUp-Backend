@@ -13,4 +13,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./write-post-controller"), exports);
 __exportStar(require("./get-posts-controller"), exports);
 __exportStar(require("./delete-post-controller"), exports);
+__exportStar(require("./get-scrap-posts-controller"), exports);
 //# sourceMappingURL=index.js.map

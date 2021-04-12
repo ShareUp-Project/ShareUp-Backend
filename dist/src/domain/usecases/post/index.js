@@ -14,4 +14,5 @@ __exportStar(require("./write-post"), exports);
 __exportStar(require("./get-posts"), exports);
 __exportStar(require("./delete-post"), exports);
 __exportStar(require("./find-post"), exports);
+__exportStar(require("./get-scrap-posts"), exports);
 //# sourceMappingURL=index.js.map
