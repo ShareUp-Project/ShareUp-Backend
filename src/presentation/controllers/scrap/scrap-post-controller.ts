@@ -1,5 +1,5 @@
 import { ScrapPost } from "@/domain/usecases";
-import { alreadyExistsData, ok, serverError } from "@/presentation/helpers";
+import { alreadyExistsData, ok } from "@/presentation/helpers";
 import { Controller, HttpResponse } from "@/presentation/protocols";
 
 export class ScrapPostController implements Controller {
