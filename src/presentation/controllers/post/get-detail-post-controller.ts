@@ -12,12 +12,14 @@ export class GetDetailPostController implements Controller {
     try {
       const data = await this.getDetailPost.getDetail({ ...request });
       data.isScrap = false;
+      data.isMine = false;
       if (
         data.scraps.findIndex(
           (i) => i.userId === request.identity && i.postId === data.id
         ) > -1
       )
         data.isScrap = true;
+      if (data.user.id === request.identity) data.isMine = true;
       data.scraps = data.scraps.length;
       data.images = data.images.map((e) => e.id);
       const response = _.pick(data, [
@@ -31,6 +33,7 @@ export class GetDetailPostController implements Controller {
         "images",
         "scraps",
         "isScrap",
+        "isMine",
       ]);
       return ok({ response });
     } catch (e) {
