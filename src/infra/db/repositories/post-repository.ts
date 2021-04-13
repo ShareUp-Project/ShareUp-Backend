@@ -77,7 +77,6 @@ export class PostRepository
       .createQueryBuilder("post")
       .innerJoinAndSelect("post.user", "user")
       .innerJoinAndSelect("post.images", "image")
-      .innerJoinAndSelect("post.hashtags", "hashtag")
       .innerJoinAndSelect("post.scraps", "scrap")
       .where("post.id = :id", { id: data.id })
       .getOne();

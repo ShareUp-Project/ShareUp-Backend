@@ -19,7 +19,6 @@ export class GetDetailPostController implements Controller {
       )
         data.isScrap = true;
       data.scraps = data.scraps.length;
-      data.hashtags = data.hashtags.map((e) => e.tag);
       data.images = data.images.map((e) => e.id);
       const response = _.pick(data, [
         "id",
@@ -29,7 +28,6 @@ export class GetDetailPostController implements Controller {
         "views",
         "user.id",
         "user.nickname",
-        "hashtags",
         "images",
         "scraps",
         "isScrap",
