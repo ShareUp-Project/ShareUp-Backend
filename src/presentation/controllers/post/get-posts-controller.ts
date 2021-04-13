@@ -22,7 +22,6 @@ export class GetPostsController implements Controller {
         "id",
         "title",
         "category",
-        "content",
         "views",
         "user.id",
         "user.nickname",

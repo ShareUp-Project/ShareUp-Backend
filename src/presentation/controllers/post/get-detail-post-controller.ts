@@ -25,6 +25,7 @@ export class GetDetailPostController implements Controller {
         "id",
         "title",
         "category",
+        "content",
         "views",
         "user.id",
         "user.nickname",
