@@ -61,10 +61,10 @@ export class PostRepository
   public async getScrap(data: GetScrapPostsRepository.Params): Promise<any> {
     return await getRepository(Post)
       .createQueryBuilder("post")
-      .innerJoinAndSelect("post.user", "user")
-      .innerJoinAndSelect("post.images", "image")
-      .innerJoinAndSelect("post.hashtags", "hashtag")
-      .innerJoinAndSelect("post.scraps", "scrap", "scrap.userId = :userId", {
+      .leftJoinAndSelect("post.user", "user")
+      .leftJoinAndSelect("post.images", "image")
+      .leftJoinAndSelect("post.hashtags", "hashtag")
+      .leftJoinAndSelect("post.scraps", "scrap", "scrap.userId = :userId", {
         userId: data.userId,
       })
       .skip(data.page * 7)
@@ -75,9 +75,9 @@ export class PostRepository
   public async getDetail(data: GetDetailPostRepository.Params): Promise<any> {
     return await getRepository(Post)
       .createQueryBuilder("post")
-      .innerJoinAndSelect("post.user", "user")
-      .innerJoinAndSelect("post.images", "image")
-      .innerJoinAndSelect("post.scraps", "scrap")
+      .leftJoinAndSelect("post.user", "user")
+      .leftJoinAndSelect("post.images", "image")
+      .leftJoinAndSelect("post.scraps", "scrap")
       .where("post.id = :id", { id: data.id })
       .getOne();
   }
