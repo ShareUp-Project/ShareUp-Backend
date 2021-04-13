@@ -17,7 +17,6 @@ class GetDetailPostController {
             if (data.scraps.findIndex((i) => i.userId === request.identity && i.postId === data.id) > -1)
                 data.isScrap = true;
             data.scraps = data.scraps.length;
-            data.hashtags = data.hashtags.map((e) => e.tag);
             data.images = data.images.map((e) => e.id);
             const response = lodash_1.default.pick(data, [
                 "id",
@@ -27,7 +26,6 @@ class GetDetailPostController {
                 "views",
                 "user.id",
                 "user.nickname",
-                "hashtags",
                 "images",
                 "scraps",
                 "isScrap",
