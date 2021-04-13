@@ -64,7 +64,7 @@ let PostRepository = class PostRepository {
             .innerJoinAndSelect("post.images", "image")
             .innerJoinAndSelect("post.hashtags", "hashtag")
             .innerJoinAndSelect("post.scraps", "scrap")
-            .where("id = :id", { id: data.id })
+            .where("post.id = :id", { id: data.id })
             .getOne();
     }
 };

@@ -23,6 +23,7 @@ class GetDetailPostController {
                 "id",
                 "title",
                 "category",
+                "content",
                 "views",
                 "user.id",
                 "user.nickname",
