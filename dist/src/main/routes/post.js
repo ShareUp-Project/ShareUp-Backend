@@ -21,6 +21,10 @@ exports.default = (router) => {
         schema: schemas_1.GetPostsSchema,
         parameters: middlewares_1.Parameters.QUERY,
     }), adapters_1.adaptRoute(factories_1.makeGetScrapPostsController()));
+    router.get("/posts/:id", middlewares_1.auth, middlewares_1.validationMiddleware({
+        schema: schemas_1.GetDetailPostSchema,
+        parameters: middlewares_1.Parameters.PARAM,
+    }), adapters_1.adaptRoute(factories_1.makeGetDetailPostController()));
     router.delete("/posts/:id", middlewares_1.auth, middlewares_1.validationMiddleware({
         schema: schemas_1.DeletePostsSchema,
         parameters: middlewares_1.Parameters.PARAM,

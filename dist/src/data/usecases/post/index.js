@@ -15,4 +15,5 @@ __exportStar(require("./db-get-posts"), exports);
 __exportStar(require("./db-delete-post"), exports);
 __exportStar(require("./db-find-post"), exports);
 __exportStar(require("./db-get-scrap-posts"), exports);
+__exportStar(require("./db-get-detail-post"), exports);
 //# sourceMappingURL=index.js.map

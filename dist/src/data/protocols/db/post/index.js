@@ -15,4 +15,5 @@ __exportStar(require("./get-posts-repository"), exports);
 __exportStar(require("./delete-post-repository"), exports);
 __exportStar(require("./find-post-repository"), exports);
 __exportStar(require("./get-scrap-posts-repository"), exports);
+__exportStar(require("./get-detail-post-repository"), exports);
 //# sourceMappingURL=index.js.map

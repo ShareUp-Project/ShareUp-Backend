@@ -14,4 +14,5 @@ __exportStar(require("./write-post-controller-factory"), exports);
 __exportStar(require("./get-posts-controller-factory"), exports);
 __exportStar(require("./delete-post-controller-factory"), exports);
 __exportStar(require("./get-scrap-posts-controller-factory"), exports);
+__exportStar(require("./get-detail-post-controller-factory"), exports);
 //# sourceMappingURL=index.js.map

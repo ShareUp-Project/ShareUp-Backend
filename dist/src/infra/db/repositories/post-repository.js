@@ -57,6 +57,16 @@ let PostRepository = class PostRepository {
             .take(7)
             .getMany();
     }
+    async getDetail(data) {
+        return await typeorm_1.getRepository(entities_1.Post)
+            .createQueryBuilder("post")
+            .innerJoinAndSelect("post.user", "user")
+            .innerJoinAndSelect("post.images", "image")
+            .innerJoinAndSelect("post.hashtags", "hashtag")
+            .innerJoinAndSelect("post.scraps", "scrap")
+            .where("id = :id", { id: data.id })
+            .getOne();
+    }
 };
 PostRepository = __decorate([
     typeorm_1.EntityRepository(entities_1.Post)
