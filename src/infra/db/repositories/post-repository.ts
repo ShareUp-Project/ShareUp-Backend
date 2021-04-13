@@ -1,12 +1,12 @@
 import {
   DeletePostRepository,
   FindPostRepository,
+  GetDetailPostRepository,
   GetPostsRepository,
   GetScrapPostsRepository,
   WritePostRepository,
 } from "@/data/protocols";
 import { Post } from "@/domain/entities";
-import { GetScrapPosts } from "@/domain/usecases";
 import { EntityRepository, getRepository } from "typeorm";
 
 @EntityRepository(Post)
@@ -16,7 +16,8 @@ export class PostRepository
     GetPostsRepository,
     DeletePostRepository,
     FindPostRepository,
-    GetScrapPostsRepository {
+    GetScrapPostsRepository,
+    GetDetailPostRepository {
   public async write(data: WritePostRepository.Params): Promise<void> {
     await getRepository(Post)
       .createQueryBuilder("post")
@@ -57,7 +58,7 @@ export class PostRepository
       .getOne();
   }
 
-  public async getScrap(data: GetScrapPosts.Params): Promise<any> {
+  public async getScrap(data: GetScrapPostsRepository.Params): Promise<any> {
     return await getRepository(Post)
       .createQueryBuilder("post")
       .innerJoinAndSelect("post.user", "user")
@@ -69,5 +70,16 @@ export class PostRepository
       .skip(data.page * 7)
       .take(7)
       .getMany();
+  }
+
+  public async getDetail(data: GetDetailPostRepository.Params): Promise<any> {
+    return await getRepository(Post)
+      .createQueryBuilder("post")
+      .innerJoinAndSelect("post.user", "user")
+      .innerJoinAndSelect("post.images", "image")
+      .innerJoinAndSelect("post.hashtags", "hashtag")
+      .innerJoinAndSelect("post.scraps", "scrap")
+      .where("id = :id", { id: data.id })
+      .getOne();
   }
 }
