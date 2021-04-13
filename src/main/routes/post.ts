@@ -6,6 +6,7 @@ import {
   makeScrapPostController,
   makeGetScrapPostsController,
   makeCancleScrapController,
+  makeGetDetailPostController,
 } from "@/main/factories";
 import {
   Parameters,
@@ -15,6 +16,7 @@ import {
 } from "@/main/middlewares";
 import {
   DeletePostsSchema,
+  GetDetailPostSchema,
   GetPostsSchema,
   ScrapPostsSchema,
   WritePostSchema,
@@ -59,6 +61,15 @@ export default (router: Router): void => {
       parameters: Parameters.QUERY,
     }),
     adaptRoute(makeGetScrapPostsController())
+  );
+  router.get(
+    "/posts/:id",
+    auth,
+    validationMiddleware({
+      schema: GetDetailPostSchema,
+      parameters: Parameters.PARAM,
+    }),
+    adaptRoute(makeGetDetailPostController())
   );
   router.delete(
     "/posts/:id",
