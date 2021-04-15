@@ -27,9 +27,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Dependencies Installation
-        run: npm ci
   CD:
     runs-on: ubuntu-latest
     needs: CI
