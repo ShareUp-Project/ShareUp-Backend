@@ -1,5 +1,5 @@
 import { DeletePost, FindPost } from "@/domain/usecases";
-import { forbidden, ok, serverError } from "@/presentation/helpers";
+import { forbidden, ok } from "@/presentation/helpers";
 import { Controller, HttpResponse } from "@/presentation/protocols";
 
 export class DeletePostController implements Controller {
