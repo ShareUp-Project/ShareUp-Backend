@@ -19,7 +19,6 @@ import {
   GetDetailPostSchema,
   GetPostsSchema,
   ScrapPostsSchema,
-  WritePostSchema,
 } from "@/validator/schemas";
 
 import { Router } from "express";
@@ -29,10 +28,6 @@ export default (router: Router): void => {
     "/posts",
     auth,
     uploadMiddleware.array("images", 8),
-    validationMiddleware({
-      schema: WritePostSchema,
-      parameters: Parameters.BODY,
-    }),
     adaptRoute(makeWritePostController())
   );
   router.get(
