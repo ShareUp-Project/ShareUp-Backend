@@ -14,12 +14,14 @@ class WritePostController {
                 ...request,
                 userId: request.identity,
             });
-            for (let tag of request.tags) {
-                await this.addHashtag.add({
-                    id: request.id,
-                    tag,
-                    postId,
-                });
+            if (request.tags) {
+                for (let tag of request.tags) {
+                    await this.addHashtag.add({
+                        id: request.id,
+                        tag,
+                        postId,
+                    });
+                }
             }
             for (let image of request.images) {
                 await this.addImage.add({ id: image["key"], postId });
@@ -27,6 +29,7 @@ class WritePostController {
             return helpers_1.ok({ message: "success" });
         }
         catch (e) {
+            console.log(e.message);
             return helpers_1.serverError(e);
         }
     }
