@@ -16,18 +16,21 @@ export class WritePostController implements Controller {
         ...request,
         userId: request.identity,
       });
-      for (let tag of request.tags) {
-        await this.addHashtag.add({
-          id: request.id,
-          tag,
-          postId,
-        });
+      if (request.tags) {
+        for (let tag of request.tags) {
+          await this.addHashtag.add({
+            id: request.id,
+            tag,
+            postId,
+          });
+        }
       }
       for (let image of request.images) {
         await this.addImage.add({ id: image["key"], postId });
       }
       return ok({ message: "success" });
     } catch (e) {
+      console.log(e.message);
       return serverError(e);
     }
   }
