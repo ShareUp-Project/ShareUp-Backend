@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && tsc -p tsconfig.json",
-    "dev": "ts-node src/main/server.ts",
+    "dev": "nodemon src/main/server.ts",
     "start": "node --max_old_space_size=4096 dist/src/main/server.js"
   },
   "repository": {
