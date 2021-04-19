@@ -6,6 +6,7 @@ ADD . /app
 
 RUN npm ci
 RUN npm i typescript
+RUN npm run build
 
 ENV NODE_ENV development
 
