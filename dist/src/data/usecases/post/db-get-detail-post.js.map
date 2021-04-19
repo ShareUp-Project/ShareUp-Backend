@@ -1,1 +1,0 @@
-{"version":3,"file":"db-get-detail-post.js","sourceRoot":"","sources":["../../../../../src/data/usecases/post/db-get-detail-post.ts"],"names":[],"mappings":";;;AAGA,MAAa,eAAe;IAC1B,YACmB,uBAAgD;QAAhD,4BAAuB,GAAvB,uBAAuB,CAAyB;IAChE,CAAC;IAEJ,KAAK,CAAC,SAAS,CAAC,IAA0B;QACxC,OAAO,MAAM,IAAI,CAAC,uBAAuB,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC;IAC5D,CAAC;CACF;AARD,0CAQC"}

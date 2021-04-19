@@ -1,1 +1,0 @@
-{"version":3,"file":"db-cancle-scrap.js","sourceRoot":"","sources":["../../../../../src/data/usecases/scrap/db-cancle-scrap.ts"],"names":[],"mappings":";;;AAGA,MAAa,aAAa;IACxB,YAA6B,qBAA4C;QAA5C,0BAAqB,GAArB,qBAAqB,CAAuB;IAAG,CAAC;IAE7E,KAAK,CAAC,MAAM,CAAC,IAAwB;QACnC,MAAM,IAAI,CAAC,qBAAqB,CAAC,MAAM,CAAC,IAAI,CAAC,CAAC;IAChD,CAAC;CACF;AAND,sCAMC"}
