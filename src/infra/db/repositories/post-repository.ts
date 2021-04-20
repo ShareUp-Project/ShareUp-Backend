@@ -64,9 +64,8 @@ export class PostRepository
       .leftJoinAndSelect("post.user", "user")
       .leftJoinAndSelect("post.images", "image")
       .leftJoinAndSelect("post.hashtags", "hashtag")
-      .leftJoinAndSelect("post.scraps", "scrap", "scrap.userId = :userId", {
-        userId: data.userId,
-      })
+      .leftJoinAndSelect("post.scraps", "scrap")
+      .where("scrap.user_id = :userId", { userId: data.userId })
       .skip(data.page * 7)
       .take(7)
       .getMany();
