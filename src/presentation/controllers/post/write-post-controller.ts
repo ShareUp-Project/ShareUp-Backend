@@ -12,15 +12,16 @@ export class WritePostController implements Controller {
 
   async handle(request: WritePostController.Request): Promise<HttpResponse> {
     try {
+      console.log(request.tags);
       const postId = await this.writePost.write({
         ...request,
         userId: request.identity,
       });
       if (request.tags) {
-        for (let tag of request.tags) {
+        for (let i = 0; i < request.tags.length; i++) {
+          console.log(request.tags[i]);
           await this.addHashtag.add({
-            id: request.id,
-            tag,
+            tag: request.tags[i],
             postId,
           });
         }
