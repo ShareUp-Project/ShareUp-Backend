@@ -4,7 +4,6 @@ export interface AddHashtag {
 
 export namespace AddHashtag {
   export type Params = {
-    id: string;
     tag: string;
     postId: string;
   };
