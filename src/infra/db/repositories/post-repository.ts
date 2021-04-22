@@ -4,6 +4,7 @@ import {
   GetDetailPostRepository,
   GetPostsRepository,
   GetScrapPostsRepository,
+  SearchTagPostsRepository,
   WritePostRepository,
 } from "@/data/protocols";
 import { Post } from "@/domain/entities";
@@ -17,7 +18,8 @@ export class PostRepository
     DeletePostRepository,
     FindPostRepository,
     GetScrapPostsRepository,
-    GetDetailPostRepository {
+    GetDetailPostRepository,
+    SearchTagPostsRepository {
   public async write(data: WritePostRepository.Params): Promise<void> {
     await getRepository(Post)
       .createQueryBuilder("post")
@@ -79,5 +81,30 @@ export class PostRepository
       .leftJoinAndSelect("post.scraps", "scrap")
       .where("post.id = :id", { id: data.id })
       .getOne();
+  }
+
+  public async searchPosts(
+    data: SearchTagPostsRepository.Params
+  ): Promise<any> {
+    const qb = await getRepository(Post)
+      .createQueryBuilder("post")
+      .leftJoinAndSelect("post.user", "user")
+      .leftJoinAndSelect("post.images", "image")
+      .leftJoinAndSelect("post.hashtags", "hashtag")
+      .leftJoinAndSelect("post.scraps", "scrap");
+
+    return qb
+      .where(
+        "post.id IN" +
+          qb
+            .subQuery()
+            .select("post.id")
+            .from(Post, "post")
+            .leftJoin("post.hashtags", "hashtag")
+            .where("hashtag.tag = :tag", { tag: data.tag })
+            .getQuery()
+      )
+      .orderBy("hashtag.id", "ASC")
+      .getMany();
   }
 }
