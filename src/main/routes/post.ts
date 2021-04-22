@@ -7,6 +7,7 @@ import {
   makeGetScrapPostsController,
   makeCancleScrapController,
   makeGetDetailPostController,
+  makeSearchTagPostsController,
 } from "@/main/factories";
 import {
   Parameters,
@@ -19,6 +20,7 @@ import {
   GetDetailPostSchema,
   GetPostsSchema,
   ScrapPostsSchema,
+  SearchTagPosts,
 } from "@/validator/schemas";
 
 import { Router } from "express";
@@ -38,6 +40,15 @@ export default (router: Router): void => {
       parameters: Parameters.QUERY,
     }),
     adaptRoute(makeGetPostsController())
+  );
+  router.get(
+    "/posts/search",
+    auth,
+    validationMiddleware({
+      schema: SearchTagPosts,
+      parameters: Parameters.QUERY,
+    }),
+    adaptRoute(makeSearchTagPostsController())
   );
   router.post(
     "/posts/scraps/:id",
