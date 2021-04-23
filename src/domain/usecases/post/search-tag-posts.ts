@@ -5,5 +5,6 @@ export interface SearchTagPosts {
 export namespace SearchTagPosts {
   export type Params = {
     tag: string;
+    page: number;
   };
 }
