@@ -10,7 +10,10 @@ export class SearchTagPostsController implements Controller {
     request: SearchTagPostsController.Request
   ): Promise<HttpResponse> {
     try {
-      const data = await this.searchTagPosts.searchPosts({ tag: request.tag });
+      const data = await this.searchTagPosts.searchPosts({
+        tag: request.tag,
+        page: Number(request.page),
+      });
       const response = _.map(data, (e) => {
         e.isScrap = false;
         if (
@@ -46,5 +49,6 @@ export namespace SearchTagPostsController {
   export type Request = {
     identity: string;
     tag: string;
+    page: string;
   };
 }
