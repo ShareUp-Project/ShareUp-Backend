@@ -104,6 +104,8 @@ export class PostRepository
             .where("hashtag.tag = :tag", { tag: data.tag })
             .getQuery()
       )
+      .skip(data.page * 7)
+      .limit(7)
       .orderBy("hashtag.id", "ASC")
       .getMany();
   }
