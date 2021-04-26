@@ -4,6 +4,7 @@ import {
   GetDetailPostRepository,
   GetPostsRepository,
   GetScrapPostsRepository,
+  GetUserPostsRepository,
   SearchTagPostsRepository,
   WritePostRepository,
 } from "@/data/protocols";
@@ -19,7 +20,8 @@ export class PostRepository
     FindPostRepository,
     GetScrapPostsRepository,
     GetDetailPostRepository,
-    SearchTagPostsRepository {
+    SearchTagPostsRepository,
+    GetUserPostsRepository {
   public async write(data: WritePostRepository.Params): Promise<void> {
     await getRepository(Post)
       .createQueryBuilder("post")
@@ -107,6 +109,37 @@ export class PostRepository
       .skip(data.page * 7)
       .limit(7)
       .orderBy("hashtag.id", "ASC")
+      .getMany();
+  }
+
+  public async getUserPosts(data: GetUserPostsRepository.Params): Promise<any> {
+    const qb = await getRepository(Post)
+      .createQueryBuilder("post")
+      .leftJoinAndSelect("post.user", "user")
+      .leftJoinAndSelect("post.images", "image")
+      .leftJoinAndSelect("post.hashtags", "hashtag")
+      .leftJoinAndSelect("post.scraps", "scrap");
+    return qb
+      .where(
+        "post.id IN" +
+          qb
+            .subQuery()
+            .select("*")
+            .from(
+              "(" +
+                (await getRepository(Post)
+                  .createQueryBuilder("post1")
+                  .select("post.id")
+                  .from(Post, "post")
+                  .where(`post.user_id = "${data.userId}"`)
+                  .skip(data.page * 7)
+                  .limit(7)
+                  .getQuery()) +
+                ")",
+              "tmp"
+            )
+            .getQuery()
+      )
       .getMany();
   }
 }
