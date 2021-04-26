@@ -16,6 +16,13 @@ export class WritePostController implements Controller {
         ...request,
         userId: request.identity,
       });
+      for (let image of request.images) {
+        await this.addImage.add({ id: image["key"], postId });
+      }
+      if (typeof request.tags === "string") {
+        await this.addHashtag.add({ tag: request.tags, postId });
+        return ok({ message: "success" });
+      }
       if (request.tags) {
         for (let i = 0; i < request.tags.length; i++) {
           await this.addHashtag.add({
@@ -23,9 +30,6 @@ export class WritePostController implements Controller {
             postId,
           });
         }
-      }
-      for (let image of request.images) {
-        await this.addImage.add({ id: image["key"], postId });
       }
       return ok({ message: "success" });
     } catch (e) {
