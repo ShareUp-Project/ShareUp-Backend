@@ -8,6 +8,7 @@ import {
   makeCancleScrapController,
   makeGetDetailPostController,
   makeSearchTagPostsController,
+  makeGetUserPostsController,
 } from "@/main/factories";
 import {
   Parameters,
@@ -19,10 +20,10 @@ import {
   DeletePostsSchema,
   GetDetailPostSchema,
   GetPostsSchema,
+  GetUserPostsSchema,
   ScrapPostsSchema,
   SearchTagPosts,
 } from "@/validator/schemas";
-
 import { Router } from "express";
 
 export default (router: Router): void => {
@@ -32,6 +33,7 @@ export default (router: Router): void => {
     uploadMiddleware.array("images", 8),
     adaptRoute(makeWritePostController())
   );
+
   router.get(
     "/posts",
     auth,
@@ -41,6 +43,21 @@ export default (router: Router): void => {
     }),
     adaptRoute(makeGetPostsController())
   );
+
+  router.get(
+    "/posts/users/:id",
+    auth,
+    validationMiddleware({
+      schema: GetUserPostsSchema,
+      parameters: Parameters.PARAM,
+    }),
+    validationMiddleware({
+      schema: GetPostsSchema,
+      parameters: Parameters.QUERY,
+    }),
+    adaptRoute(makeGetUserPostsController())
+  );
+
   router.get(
     "/posts/search",
     auth,
@@ -50,6 +67,7 @@ export default (router: Router): void => {
     }),
     adaptRoute(makeSearchTagPostsController())
   );
+
   router.post(
     "/posts/scraps/:id",
     auth,
@@ -59,6 +77,7 @@ export default (router: Router): void => {
     }),
     adaptRoute(makeScrapPostController())
   );
+
   router.get(
     "/posts/scraps",
     auth,
@@ -68,6 +87,7 @@ export default (router: Router): void => {
     }),
     adaptRoute(makeGetScrapPostsController())
   );
+
   router.get(
     "/posts/:id",
     auth,
@@ -77,6 +97,7 @@ export default (router: Router): void => {
     }),
     adaptRoute(makeGetDetailPostController())
   );
+
   router.delete(
     "/posts/:id",
     auth,
@@ -86,6 +107,7 @@ export default (router: Router): void => {
     }),
     adaptRoute(makeDeletePostController())
   );
+
   router.delete(
     "/posts/scraps/:id",
     auth,
