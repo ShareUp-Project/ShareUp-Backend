@@ -5,3 +5,4 @@ export * from "./find-post-repository";
 export * from "./get-scrap-posts-repository";
 export * from "./get-detail-post-repository";
 export * from "./search-tag-posts-repository";
+export * from "./get-user-posts-repository";

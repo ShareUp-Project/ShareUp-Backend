@@ -5,3 +5,4 @@ export * from "./db-find-post";
 export * from "./db-get-scrap-posts";
 export * from "./db-get-detail-post";
 export * from "./db-search-tag-posts";
+export * from "./db-get-user-posts";
