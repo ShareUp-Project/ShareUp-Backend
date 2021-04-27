@@ -5,5 +5,6 @@ export interface GetPosts {
 export namespace GetPosts {
   export type Params = {
     page: number;
+    category: string;
   };
 }
