@@ -2,6 +2,7 @@ import {
   ChangePasswordRepository,
   CreateUserRepository,
   FindUserRepository,
+  GetNicknameRepository,
 } from "@/data/protocols";
 import { User } from "@/domain/entities";
 import { EntityRepository, getRepository } from "typeorm";
@@ -11,7 +12,8 @@ export class UserRepository
   implements
     CreateUserRepository,
     FindUserRepository,
-    ChangePasswordRepository {
+    ChangePasswordRepository,
+    GetNicknameRepository {
   public async create(data: CreateUserRepository.Params): Promise<void> {
     await getRepository(User)
       .createQueryBuilder("user")
@@ -44,5 +46,15 @@ export class UserRepository
       .set({ password: data.password })
       .where("phone = :phone", { phone: data.phone })
       .execute();
+  }
+
+  public async getNickname(
+    data: GetNicknameRepository.Params
+  ): Promise<GetNicknameRepository.Result> {
+    return await getRepository(User)
+      .createQueryBuilder("user")
+      .select("user.nickname")
+      .where("id = :id", { id: data.userId })
+      .getOne();
   }
 }
