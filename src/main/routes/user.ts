@@ -3,11 +3,13 @@ import {
   makeNicknameCheckController,
   makeSignupController,
   makeChangePasswordController,
+  makeGetNicknameController,
 } from "@/main/factories";
-import { Parameters, validationMiddleware } from "@/main/middlewares";
+import { auth, Parameters, validationMiddleware } from "@/main/middlewares";
 import {
   ChangePasswordSchema,
   CreateUserSchema,
+  GetNicknameSchema,
   NicknameCheckSchema,
 } from "@/validator/schemas";
 
@@ -22,6 +24,17 @@ export default (router: Router): void => {
     }),
     adaptRoute(makeSignupController())
   );
+
+  router.get(
+    "/users/nickname/:id?",
+    auth,
+    validationMiddleware({
+      schema: GetNicknameSchema,
+      parameters: Parameters.PARAM,
+    }),
+    adaptRoute(makeGetNicknameController())
+  );
+
   router.post(
     "/users/nickname",
     validationMiddleware({
@@ -30,6 +43,7 @@ export default (router: Router): void => {
     }),
     adaptRoute(makeNicknameCheckController())
   );
+
   router.put(
     "/users/password",
     validationMiddleware({
