@@ -4,6 +4,7 @@ import {
   makeSignupController,
   makeChangePasswordController,
   makeGetNicknameController,
+  makeChangeNicknameController,
 } from "@/main/factories";
 import { auth, Parameters, validationMiddleware } from "@/main/middlewares";
 import {
@@ -42,6 +43,16 @@ export default (router: Router): void => {
       parameters: Parameters.BODY,
     }),
     adaptRoute(makeNicknameCheckController())
+  );
+
+  router.put(
+    "/users/nickname",
+    auth,
+    validationMiddleware({
+      schema: NicknameCheckSchema,
+      parameters: Parameters.BODY,
+    }),
+    adaptRoute(makeChangeNicknameController())
   );
 
   router.put(
