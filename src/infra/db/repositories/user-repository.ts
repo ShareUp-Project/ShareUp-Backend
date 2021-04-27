@@ -1,4 +1,5 @@
 import {
+  ChangeNicknameRepository,
   ChangePasswordRepository,
   CreateUserRepository,
   FindUserRepository,
@@ -13,7 +14,8 @@ export class UserRepository
     CreateUserRepository,
     FindUserRepository,
     ChangePasswordRepository,
-    GetNicknameRepository {
+    GetNicknameRepository,
+    ChangeNicknameRepository {
   public async create(data: CreateUserRepository.Params): Promise<void> {
     await getRepository(User)
       .createQueryBuilder("user")
@@ -56,5 +58,16 @@ export class UserRepository
       .select("user.nickname")
       .where("id = :id", { id: data.userId })
       .getOne();
+  }
+
+  public async changeNickname(
+    data: ChangeNicknameRepository.Params
+  ): Promise<void> {
+    await getRepository(User)
+      .createQueryBuilder("user")
+      .update(User)
+      .set({ nickname: data.nickname })
+      .where("id = :userId", { userId: data.userId })
+      .execute();
   }
 }
