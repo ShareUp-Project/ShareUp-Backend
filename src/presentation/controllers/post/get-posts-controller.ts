@@ -38,6 +38,7 @@ export class GetPostsController implements Controller {
 export namespace GetPostsController {
   export type Request = {
     page: number;
+    category: string;
     identity: string;
   };
 }
