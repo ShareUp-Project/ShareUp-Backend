@@ -32,12 +32,24 @@ export class PostRepository
   }
 
   public async get(data: GetPostsRepository.Params): Promise<any> {
+    if (!data.category) {
+      return await getRepository(Post)
+        .createQueryBuilder("post")
+        .leftJoinAndSelect("post.user", "user")
+        .leftJoinAndSelect("post.images", "image")
+        .leftJoinAndSelect("post.hashtags", "hashtag")
+        .leftJoinAndSelect("post.scraps", "scrap")
+        .skip(data.page * 7)
+        .take(7)
+        .getMany();
+    }
     return await getRepository(Post)
       .createQueryBuilder("post")
       .leftJoinAndSelect("post.user", "user")
       .leftJoinAndSelect("post.images", "image")
       .leftJoinAndSelect("post.hashtags", "hashtag")
       .leftJoinAndSelect("post.scraps", "scrap")
+      .where("post.category = :category", { category: data.category })
       .skip(data.page * 7)
       .take(7)
       .getMany();
