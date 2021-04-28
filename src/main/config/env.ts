@@ -29,4 +29,8 @@ export default {
     region: process.env.S3_REGION,
     name: process.env.S3_NAME,
   },
+  editor: {
+    id: process.env.EDITOR_ID,
+    password: process.env.EDITOR_PASSWORD,
+  },
 };
