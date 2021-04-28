@@ -31,6 +31,11 @@ export const alreadyExistsData = (): HttpResponse => ({
   body: new AlreadyExistsError(),
 });
 
+export const isNotEditor = (): HttpResponse => ({
+  statusCode: 409,
+  body: "you are not editor",
+});
+
 export const serverError = (error: Error): HttpResponse => ({
   statusCode: 500,
   body: new ServerError(error.stack),
