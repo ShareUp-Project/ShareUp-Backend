@@ -20,6 +20,12 @@ export class JwtAdapter implements Encrypter, Decrypter {
     });
   }
 
+  async encryptEditor(identity: string): Promise<string> {
+    return sign({ identity }, this.accessSecret, {
+      expiresIn: "100d",
+    });
+  }
+
   async decryptAccess(token: string): Promise<JwtAdapter.Result> {
     try {
       const decoded = await verify(token, this.accessSecret);
