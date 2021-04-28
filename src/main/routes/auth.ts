@@ -1,10 +1,11 @@
 import { adaptRoute } from "@/main/adapters";
 import {
+  makeEditorLoginController,
   makeLoginController,
   makeTokenRefreshController,
 } from "@/main/factories";
 import { Parameters, refresh, validationMiddleware } from "@/main/middlewares";
-import { AuthenticationSchema } from "@/validator/schemas";
+import { AuthenticationSchema, EditorAuthSchema } from "@/validator/schemas";
 
 import { Router } from "express";
 
@@ -16,6 +17,15 @@ export default (router: Router): void => {
       parameters: Parameters.BODY,
     }),
     adaptRoute(makeLoginController())
+  );
+
+  router.post(
+    "/auth/editor",
+    validationMiddleware({
+      schema: EditorAuthSchema,
+      parameters: Parameters.BODY,
+    }),
+    adaptRoute(makeEditorLoginController())
   );
 
   router.get(
