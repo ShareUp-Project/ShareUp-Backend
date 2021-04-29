@@ -1,5 +1,5 @@
 import { JwtAdapter } from "@/infra/jwt";
-import { AuthMiddleware } from "@/presentation/middlewares/auth";
+import { AuthMiddleware } from "@/presentation/middlewares";
 import { Middleware } from "@/presentation/protocols";
 import env from "@/main/config/env";
 
