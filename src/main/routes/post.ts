@@ -15,6 +15,7 @@ import {
   validationMiddleware,
   auth,
   uploadMiddleware,
+  editorCheck,
 } from "@/main/middlewares";
 import {
   DeletePostsSchema,
@@ -31,6 +32,13 @@ export default (router: Router): void => {
     "/posts",
     auth,
     uploadMiddleware.array("images", 8),
+    adaptRoute(makeWritePostController())
+  );
+
+  router.post(
+    "/posts/editor",
+    editorCheck,
+    uploadMiddleware.single("image"),
     adaptRoute(makeWritePostController())
   );
 
