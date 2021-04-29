@@ -3,3 +3,4 @@ export * from "./post-repository";
 export * from "./image-repository";
 export * from "./hashtag-repository";
 export * from "./scrap-repository";
+export * from "./editor-post-repository";

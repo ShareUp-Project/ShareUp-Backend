@@ -5,3 +5,4 @@ export * from "./auth";
 export * from "./refresh";
 export * from "./url";
 export * from "./upload-middleware";
+export * from "./editor-check";

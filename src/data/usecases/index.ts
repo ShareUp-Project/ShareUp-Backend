@@ -4,3 +4,4 @@ export * from "./phone";
 export * from "./post";
 export * from "./image";
 export * from "./scrap";
+export * from "./editor";
