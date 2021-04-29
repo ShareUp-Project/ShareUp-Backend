@@ -1,5 +1,6 @@
 import Joi from "joi";
 
 export const SearchTagPosts = Joi.object().keys({
-  tag: Joi.string().required(),
+  page: Joi.string().required(),
+  word: Joi.string().required(),
 });
