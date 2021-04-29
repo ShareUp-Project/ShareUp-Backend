@@ -115,11 +115,14 @@ export class PostRepository
             .select("post.id")
             .from(Post, "post")
             .leftJoin("post.hashtags", "hashtag")
-            .where("hashtag.tag = :tag", { tag: data.tag })
+            .where("hashtag.tag = :tag OR post.title like :title", {
+              tag: data.word,
+              title: `%${data.word}%`,
+            })
             .getQuery()
       )
-      .skip(data.page * 7)
       .limit(7)
+      .offset(data.page * 7)
       .orderBy("hashtag.id", "ASC")
       .getMany();
   }
