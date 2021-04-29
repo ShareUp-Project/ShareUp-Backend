@@ -11,7 +11,7 @@ export class SearchTagPostsController implements Controller {
   ): Promise<HttpResponse> {
     try {
       const data = await this.searchTagPosts.searchPosts({
-        tag: request.tag,
+        word: request.word,
         page: Number(request.page),
       });
       const response = _.map(data, (e) => {
@@ -48,7 +48,7 @@ export class SearchTagPostsController implements Controller {
 export namespace SearchTagPostsController {
   export type Request = {
     identity: string;
-    tag: string;
+    word: string;
     page: string;
   };
 }
