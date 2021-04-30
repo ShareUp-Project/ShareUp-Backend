@@ -8,6 +8,7 @@ export class GetUserPostsController implements Controller {
 
   async handle(request: GetUserPostsController.Request): Promise<HttpResponse> {
     try {
+      if (!request.id) request.id = request.identity;
       const data = await this.getUserPosts.getUserPosts({
         userId: request.id,
         page: Number(request.page),
