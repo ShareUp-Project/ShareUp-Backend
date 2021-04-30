@@ -53,7 +53,7 @@ export default (router: Router): void => {
   );
 
   router.get(
-    "/posts/users/:id",
+    "/posts/users/:id?",
     auth,
     validationMiddleware({
       schema: GetUserPostsSchema,
