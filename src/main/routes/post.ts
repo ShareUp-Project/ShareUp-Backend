@@ -20,6 +20,7 @@ import {
 import {
   DeletePostsSchema,
   GetDetailPostSchema,
+  GetEditorPostsSchema,
   GetPostsSchema,
   GetUserPostsSchema,
   ScrapPostsSchema,
@@ -39,6 +40,15 @@ export default (router: Router): void => {
     "/posts/editor",
     editorCheck,
     uploadMiddleware.single("image"),
+    adaptRoute(makeWritePostController())
+  );
+
+  router.get(
+    "/posts/editor",
+    validationMiddleware({
+      schema: GetEditorPostsSchema,
+      parameters: Parameters.QUERY,
+    }),
     adaptRoute(makeWritePostController())
   );
 
