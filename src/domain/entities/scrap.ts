@@ -1,4 +1,10 @@
-import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import {
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+} from "typeorm";
 import { User, Post } from "@/domain/entities";
 
 @Entity()
@@ -8,6 +14,9 @@ export class Scrap {
 
   @PrimaryColumn({ name: "post_id", length: 45 })
   postId: string;
+
+  @CreateDateColumn({ name: "created_at" })
+  createdAt: Date;
 
   @ManyToOne((type) => User, (user) => user.id, {
     onUpdate: "CASCADE",
