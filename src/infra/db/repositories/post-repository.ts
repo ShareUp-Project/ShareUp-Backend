@@ -39,6 +39,7 @@ export class PostRepository
         .leftJoinAndSelect("post.images", "image")
         .leftJoinAndSelect("post.hashtags", "hashtag")
         .leftJoinAndSelect("post.scraps", "scrap")
+        .leftJoinAndSelect("post.views", "view")
         .skip(data.page * 7)
         .take(7)
         .orderBy("post.createdAt", "DESC")
@@ -50,6 +51,7 @@ export class PostRepository
       .leftJoinAndSelect("post.images", "image")
       .leftJoinAndSelect("post.hashtags", "hashtag")
       .leftJoinAndSelect("post.scraps", "scrap")
+      .leftJoinAndSelect("post.views", "view")
       .where("post.category = :category", { category: data.category })
       .skip(data.page * 7)
       .take(7)
@@ -83,6 +85,7 @@ export class PostRepository
       .leftJoinAndSelect("post.images", "image")
       .leftJoinAndSelect("post.hashtags", "hashtag")
       .leftJoinAndSelect("post.scraps", "scrap")
+      .leftJoinAndSelect("post.views", "view")
       .where("scrap.user_id = :userId", { userId: data.userId })
       .skip(data.page * 7)
       .take(7)
@@ -96,6 +99,7 @@ export class PostRepository
       .leftJoinAndSelect("post.user", "user")
       .leftJoinAndSelect("post.images", "image")
       .leftJoinAndSelect("post.scraps", "scrap")
+      .leftJoinAndSelect("post.views", "view")
       .where("post.id = :id", { id: data.id })
       .getOne();
   }
@@ -108,7 +112,8 @@ export class PostRepository
       .leftJoinAndSelect("post.user", "user")
       .leftJoinAndSelect("post.images", "image")
       .leftJoinAndSelect("post.hashtags", "hashtag")
-      .leftJoinAndSelect("post.scraps", "scrap");
+      .leftJoinAndSelect("post.scraps", "scrap")
+      .leftJoinAndSelect("post.views", "view");
 
     return qb
       .where(
@@ -143,7 +148,8 @@ export class PostRepository
       .leftJoinAndSelect("post.user", "user")
       .leftJoinAndSelect("post.images", "image")
       .leftJoinAndSelect("post.hashtags", "hashtag")
-      .leftJoinAndSelect("post.scraps", "scrap");
+      .leftJoinAndSelect("post.scraps", "scrap")
+      .leftJoinAndSelect("post.views", "view");
     return qb
       .where(
         "post.id IN" +
