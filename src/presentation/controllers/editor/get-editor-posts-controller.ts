@@ -12,7 +12,7 @@ export class GetEditorPostsController implements Controller {
       const data = await this.getEditorPosts.getEditorPosts({
         page: Number(request.page),
       });
-      return ok(data);
+      return ok({ data });
     } catch (e) {
       return serverError(e);
     }
