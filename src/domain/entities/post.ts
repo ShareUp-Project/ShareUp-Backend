@@ -7,7 +7,7 @@ import {
   OneToMany,
   PrimaryColumn,
 } from "typeorm";
-import { User, Image, Hashtag, Scrap } from "@/domain/entities";
+import { User, Image, Hashtag, Scrap, View } from "@/domain/entities";
 
 export enum Category {
   PAPER = "paper",
@@ -37,9 +37,6 @@ export class Post {
   @Column({ type: "enum", enum: Category })
   category: Category;
 
-  @Column({ default: 0 })
-  views: number;
-
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
 
@@ -58,4 +55,7 @@ export class Post {
 
   @OneToMany((type) => Scrap, (scrap) => scrap.post)
   scraps!: Scrap[];
+
+  @OneToMany((type) => View, (view) => view.post)
+  views!: Scrap[];
 }
