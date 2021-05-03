@@ -41,6 +41,7 @@ export class PostRepository
         .leftJoinAndSelect("post.scraps", "scrap")
         .skip(data.page * 7)
         .take(7)
+        .orderBy("post.createdAt", "DESC")
         .getMany();
     }
     return await getRepository(Post)
@@ -52,6 +53,7 @@ export class PostRepository
       .where("post.category = :category", { category: data.category })
       .skip(data.page * 7)
       .take(7)
+      .orderBy("post.createdAt", "DESC")
       .getMany();
   }
 
@@ -84,6 +86,7 @@ export class PostRepository
       .where("scrap.user_id = :userId", { userId: data.userId })
       .skip(data.page * 7)
       .take(7)
+      .orderBy("scrap.createdAt")
       .getMany();
   }
 
@@ -149,6 +152,7 @@ export class PostRepository
                   .where(`post.user_id = "${data.userId}"`)
                   .skip(data.page * 7)
                   .limit(7)
+                  .orderBy("post.createdAt", "DESC")
                   .getQuery()) +
                 ")",
               "tmp"
