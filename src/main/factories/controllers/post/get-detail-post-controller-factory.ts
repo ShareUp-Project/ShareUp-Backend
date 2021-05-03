@@ -1,7 +1,15 @@
 import { GetDetailPostController } from "@/presentation/controllers";
 import { Controller } from "@/presentation/protocols";
-import { makeDbGetDetailPost } from "@/main/factories";
+import {
+  makeDbGetDetailPost,
+  makeDbAddView,
+  makeDbFindOneView,
+} from "@/main/factories";
 
 export const makeGetDetailPostController = (): Controller => {
-  return new GetDetailPostController(makeDbGetDetailPost());
+  return new GetDetailPostController(
+    makeDbGetDetailPost(),
+    makeDbAddView(),
+    makeDbFindOneView()
+  );
 };
