@@ -5,3 +5,4 @@ export * from "./post";
 export * from "./image";
 export * from "./scrap";
 export * from "./editor";
+export * from "./view";
