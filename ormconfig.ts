@@ -7,6 +7,7 @@ import {
   Hashtag,
   Scrap,
   EditorPost,
+  View,
 } from "@/domain/entities";
 
 const connectionOptions: ConnectionOptions = {
@@ -18,7 +19,7 @@ const connectionOptions: ConnectionOptions = {
   database: config.mysql.name,
   synchronize: true,
   logging: true,
-  entities: [User, Post, Image, Hashtag, Scrap, EditorPost],
+  entities: [User, Post, Image, Hashtag, Scrap, EditorPost, View],
 };
 
 export default connectionOptions;
