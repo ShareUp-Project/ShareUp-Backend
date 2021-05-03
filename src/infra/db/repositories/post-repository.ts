@@ -115,18 +115,25 @@ export class PostRepository
         "post.id IN" +
           qb
             .subQuery()
-            .select("post.id")
-            .from(Post, "post")
-            .leftJoin("post.hashtags", "hashtag")
-            .where("hashtag.tag = :tag OR post.title like :title", {
-              tag: data.word,
-              title: `%${data.word}%`,
-            })
+            .select("*")
+            .from(
+              "(" +
+                (await getRepository(Post)
+                  .createQueryBuilder("post")
+                  .select("post.id")
+                  .leftJoin("post.hashtags", "hashtag")
+                  .where(
+                    `hashtag.tag = "${data.word}" OR post.title like "%${data.word}%"`
+                  )
+                  .orderBy("post.createdAt", "DESC")
+                  .skip(data.page * 7)
+                  .limit(7)
+                  .getQuery()) +
+                ")",
+              "tmp"
+            )
             .getQuery()
       )
-      .limit(7)
-      .offset(data.page * 7)
-      .orderBy("hashtag.id", "ASC")
       .getMany();
   }
 
