@@ -23,6 +23,7 @@ export class SearchTagPostsController implements Controller {
         )
           e.isScrap = true;
         e.scraps = e.scraps.length;
+        e.views = e.views.length;
         e.hashtags = e.hashtags.map((e) => e.tag);
         e.images = e.images.map((e) => e.id);
         return _.pick(e, [
