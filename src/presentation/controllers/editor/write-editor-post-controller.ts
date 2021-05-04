@@ -9,10 +9,11 @@ export class WriteEditorPostController implements Controller {
     request: WriteEditorPostController.Request
   ): Promise<HttpResponse> {
     try {
-      request.image = request.image["key"];
+      if (request.image) request.image = request.image["key"];
       await this.writeEditorPost.write(request);
       return ok({ message: "success" });
     } catch (e) {
+      console.log(e.message);
       return serverError(e);
     }
   }
