@@ -1,6 +1,5 @@
 import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
-import { Post } from "./post";
-import { User } from "./user";
+import { User, Post } from "@/domain/entities";
 
 @Entity()
 export class View {

@@ -1,6 +1,5 @@
 import { Entity, PrimaryColumn, Column, OneToMany } from "typeorm";
-import { Post, Scrap } from "@/domain/entities";
-import { View } from "./view";
+import { Post, Scrap, View } from "@/domain/entities";
 
 @Entity()
 export class User {
