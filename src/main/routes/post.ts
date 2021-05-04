@@ -9,6 +9,7 @@ import {
   makeGetDetailPostController,
   makeSearchTagPostsController,
   makeGetUserPostsController,
+  makeWriteEditorPostController,
 } from "@/main/factories";
 import {
   Parameters,
@@ -40,7 +41,7 @@ export default (router: Router): void => {
     "/posts/editor",
     editorCheck,
     uploadMiddleware.single("image"),
-    adaptRoute(makeWritePostController())
+    adaptRoute(makeWriteEditorPostController())
   );
 
   router.get(
