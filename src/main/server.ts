@@ -6,10 +6,11 @@ import { connection } from "@/infra/db";
 
 const PORT: number = env.port;
 
-connection()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`server on port ${PORT}`);
-    });
-  })
-  .catch(console.error);
+async function startServer() {
+  await connection();
+  app.listen(PORT, () => {
+    console.log(`server on port ${PORT}`);
+  });
+}
+
+startServer();
