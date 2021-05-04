@@ -10,6 +10,7 @@ import {
   makeSearchTagPostsController,
   makeGetUserPostsController,
   makeWriteEditorPostController,
+  makeGetEditorPostsController,
 } from "@/main/factories";
 import {
   Parameters,
@@ -50,7 +51,7 @@ export default (router: Router): void => {
       schema: GetEditorPostsSchema,
       parameters: Parameters.QUERY,
     }),
-    adaptRoute(makeWritePostController())
+    adaptRoute(makeGetEditorPostsController())
   );
 
   router.get(
