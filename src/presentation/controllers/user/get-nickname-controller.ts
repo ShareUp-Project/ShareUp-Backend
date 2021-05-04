@@ -9,8 +9,6 @@ export class GetNicknameController implements Controller {
     try {
       if (!request.id) request.id = request.identity;
       const user = await this.getNickname.getNickname({ userId: request.id });
-      // if (!user) throw new Error("User Not Found");
-      console.log(user);
       return ok(user);
     } catch (e) {
       return notFound();
