@@ -11,6 +11,6 @@ export class EditorPost {
   @Column({ length: 1000 })
   content: string;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, nullable: true })
   image: string;
 }
