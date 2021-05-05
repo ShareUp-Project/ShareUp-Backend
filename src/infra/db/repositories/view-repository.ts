@@ -19,8 +19,8 @@ export class ViewRepository
   ): Promise<FindOneViewRepository.Result> {
     return await getRepository(View)
       .createQueryBuilder("view")
-      .where("userId = :userId", { userId: data.userId })
-      .andWhere("postId = :postId", { postId: data.postId })
+      .where("user_id = :userId", { userId: data.userId })
+      .andWhere("post_id = :postId", { postId: data.postId })
       .getOne();
   }
 }
