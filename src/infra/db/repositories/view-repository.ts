@@ -20,7 +20,7 @@ export class ViewRepository
     return await getRepository(View)
       .createQueryBuilder("view")
       .where("userId = :userId", { userId: data.userId })
-      .andWhere("postId =: postId", { postId: data.postId })
+      .andWhere("postId = :postId", { postId: data.postId })
       .getOne();
   }
 }
