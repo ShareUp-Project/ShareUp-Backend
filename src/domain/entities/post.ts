@@ -7,7 +7,14 @@ import {
   OneToMany,
   PrimaryColumn,
 } from "typeorm";
-import { User, Image, Hashtag, Scrap, View } from "@/domain/entities";
+import {
+  User,
+  Image,
+  Hashtag,
+  Scrap,
+  View,
+  WeeklyView,
+} from "@/domain/entities";
 
 export enum Category {
   PAPER = "paper",
@@ -58,4 +65,7 @@ export class Post {
 
   @OneToMany((type) => View, (view) => view.post)
   views!: Scrap[];
+
+  @OneToMany((type) => WeeklyView, (weeklyView) => weeklyView.post)
+  weeklyViews!: WeeklyView[];
 }
