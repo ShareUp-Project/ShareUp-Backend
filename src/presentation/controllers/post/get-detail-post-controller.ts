@@ -1,4 +1,10 @@
-import { AddView, FindOneView, GetDetailPost } from "@/domain/usecases";
+import {
+  AddView,
+  AddWeeklyView,
+  FindOneView,
+  FindOneWeeklyView,
+  GetDetailPost,
+} from "@/domain/usecases";
 import { notFound, ok } from "@/presentation/helpers";
 import { Controller, HttpResponse } from "@/presentation/protocols";
 import _ from "lodash";
@@ -7,7 +13,9 @@ export class GetDetailPostController implements Controller {
   constructor(
     private readonly getDetailPost: GetDetailPost,
     private readonly addView: AddView,
-    private readonly findOneView: FindOneView
+    private readonly findOneView: FindOneView,
+    private readonly addWeeklyView: AddWeeklyView,
+    private readonly findOneWeeklyView: FindOneWeeklyView
   ) {}
   async handle(
     request: GetDetailPostController.Request
@@ -18,8 +26,17 @@ export class GetDetailPostController implements Controller {
         userId: request.identity,
         postId: request.id,
       });
+      const weeklyView = await this.findOneWeeklyView.findOne({
+        userId: request.identity,
+        postId: request.id,
+      });
       if (!view)
         await this.addView.add({
+          userId: request.identity,
+          postId: request.id,
+        });
+      if (!weeklyView)
+        await this.addWeeklyView.add({
           userId: request.identity,
           postId: request.id,
         });
