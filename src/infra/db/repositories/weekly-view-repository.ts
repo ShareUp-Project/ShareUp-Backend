@@ -22,8 +22,8 @@ export class WeeklyViewRepository
   ): Promise<FindOneWeeklyViewRepository.Result> {
     return await getRepository(WeeklyView)
       .createQueryBuilder("weekly_view")
-      .where("userId = :userId", { userId: data.userId })
-      .andWhere("postId = :postId", { postId: data.postId })
+      .where("user_id = :userId", { userId: data.userId })
+      .andWhere("post_id = :postId", { postId: data.postId })
       .getOne();
   }
 }
