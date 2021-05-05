@@ -6,3 +6,4 @@ export * from "./image";
 export * from "./scrap";
 export * from "./editor";
 export * from "./view";
+export * from "./weekly-view";
