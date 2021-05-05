@@ -4,12 +4,16 @@ import {
   makeDbGetDetailPost,
   makeDbAddView,
   makeDbFindOneView,
+  makeDbAddWeeklyView,
+  makeDbFindOneWeeklyView,
 } from "@/main/factories";
 
 export const makeGetDetailPostController = (): Controller => {
   return new GetDetailPostController(
     makeDbGetDetailPost(),
     makeDbAddView(),
-    makeDbFindOneView()
+    makeDbFindOneView(),
+    makeDbAddWeeklyView(),
+    makeDbFindOneWeeklyView()
   );
 };
