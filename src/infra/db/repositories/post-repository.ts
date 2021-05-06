@@ -2,6 +2,7 @@ import {
   DeletePostRepository,
   FindPostRepository,
   GetDetailPostRepository,
+  GetPopularPostsRepository,
   GetPostsRepository,
   GetScrapPostsRepository,
   GetUserPostsRepository,
@@ -21,7 +22,8 @@ export class PostRepository
     GetScrapPostsRepository,
     GetDetailPostRepository,
     SearchTagPostsRepository,
-    GetUserPostsRepository {
+    GetUserPostsRepository,
+    GetPopularPostsRepository {
   public async write(data: WritePostRepository.Params): Promise<void> {
     await getRepository(Post)
       .createQueryBuilder("post")
@@ -172,6 +174,19 @@ export class PostRepository
             )
             .getQuery()
       )
+      .getMany();
+  }
+
+  public async getPopular(): Promise<any> {
+    return await getRepository(Post)
+      .createQueryBuilder("post")
+      .select("post.id")
+      .addSelect("post.title")
+      .addSelect("ifnull(count(weekly_view.post_id), 0)", "weekly_view")
+      .leftJoinAndSelect("post.weeklyViews", "weekly_view")
+      .groupBy("post.id, weekly_view.post_id")
+      .orderBy("weekly_view", "DESC")
+      .limit(4)
       .getMany();
   }
 }
