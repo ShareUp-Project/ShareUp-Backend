@@ -6,3 +6,4 @@ export * from "./get-scrap-posts";
 export * from "./get-detail-post";
 export * from "./search-tag-posts";
 export * from "./get-user-posts";
+export * from "./get-popular-posts";
