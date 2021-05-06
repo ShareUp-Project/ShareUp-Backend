@@ -11,6 +11,7 @@ import {
   makeGetUserPostsController,
   makeWriteEditorPostController,
   makeGetEditorPostsController,
+  makeGetPopularPostsController,
 } from "@/main/factories";
 import {
   Parameters,
@@ -107,6 +108,8 @@ export default (router: Router): void => {
     }),
     adaptRoute(makeGetScrapPostsController())
   );
+
+  router.get("/posts/weeks", auth, adaptRoute(makeGetPopularPostsController()));
 
   router.get(
     "/posts/:id",
