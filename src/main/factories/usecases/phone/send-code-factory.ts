@@ -12,11 +12,6 @@ export const makeDbSendCode = (): SendCode => {
   const PHONE = env.sens.phone;
   const redisRepository = new RedisRepository();
   const codeAdapter = new CodeAdapter();
-  const sendMessageAdapter = new SendMessageAdapter(
-    SERVICE_ID,
-    ACCESS,
-    SECRET,
-    PHONE
-  );
+  const sendMessageAdapter = new SendMessageAdapter(SERVICE_ID, ACCESS, SECRET, PHONE);
   return new DbSendCode(redisRepository, codeAdapter, sendMessageAdapter);
 };

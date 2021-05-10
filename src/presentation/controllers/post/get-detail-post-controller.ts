@@ -1,10 +1,4 @@
-import {
-  AddView,
-  AddWeeklyView,
-  FindOneView,
-  FindOneWeeklyView,
-  GetDetailPost,
-} from "@/domain/usecases";
+import { AddView, AddWeeklyView, FindOneView, FindOneWeeklyView, GetDetailPost } from "@/domain/usecases";
 import { notFound, ok } from "@/presentation/helpers";
 import { Controller, HttpResponse } from "@/presentation/protocols";
 import _ from "lodash";
@@ -17,9 +11,7 @@ export class GetDetailPostController implements Controller {
     private readonly addWeeklyView: AddWeeklyView,
     private readonly findOneWeeklyView: FindOneWeeklyView
   ) {}
-  async handle(
-    request: GetDetailPostController.Request
-  ): Promise<HttpResponse> {
+  async handle(request: GetDetailPostController.Request): Promise<HttpResponse> {
     try {
       const data = await this.getDetailPost.getDetail({ ...request });
       const view = await this.findOneView.findOne({
@@ -42,12 +34,7 @@ export class GetDetailPostController implements Controller {
         });
       data.isScrap = false;
       data.isMine = false;
-      if (
-        data.scraps.findIndex(
-          (i) => i.userId === request.identity && i.postId === data.id
-        ) > -1
-      )
-        data.isScrap = true;
+      if (data.scraps.findIndex((i) => i.userId === request.identity && i.postId === data.id) > -1) data.isScrap = true;
       if (data.user.id === request.identity) data.isMine = true;
       data.scraps = data.scraps.length;
       data.views = data.views.length;

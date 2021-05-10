@@ -3,10 +3,7 @@ import { forbidden, ok } from "@/presentation/helpers";
 import { Controller, HttpResponse } from "@/presentation/protocols";
 
 export class DeletePostController implements Controller {
-  constructor(
-    private readonly deletePost: DeletePost,
-    private readonly findPost: FindPost
-  ) {}
+  constructor(private readonly deletePost: DeletePost, private readonly findPost: FindPost) {}
 
   async handle(request: DeletePostController.Request): Promise<HttpResponse> {
     try {

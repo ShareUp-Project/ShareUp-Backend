@@ -5,9 +5,7 @@ import { Controller, HttpResponse } from "@/presentation/protocols";
 export class NicknameCheckController implements Controller {
   constructor(private readonly findUser: FindUser) {}
 
-  async handle(
-    request: NicknameCheckController.Request
-  ): Promise<HttpResponse> {
+  async handle(request: NicknameCheckController.Request): Promise<HttpResponse> {
     try {
       const user = await this.findUser.findOneByNickname(request.nickname);
       if (user) return alreadyExistsData();

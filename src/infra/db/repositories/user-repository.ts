@@ -17,12 +17,7 @@ export class UserRepository
     GetNicknameRepository,
     ChangeNicknameRepository {
   public async create(data: CreateUserRepository.Params): Promise<void> {
-    await getRepository(User)
-      .createQueryBuilder("user")
-      .insert()
-      .into(User)
-      .values(data)
-      .execute();
+    await getRepository(User).createQueryBuilder("user").insert().into(User).values(data).execute();
   }
 
   public async findOne(phone: string): Promise<FindUserRepository.Result> {
@@ -32,9 +27,7 @@ export class UserRepository
       .getOne();
   }
 
-  public async findOneByNickname(
-    nickname: string
-  ): Promise<FindUserRepository.Result> {
+  public async findOneByNickname(nickname: string): Promise<FindUserRepository.Result> {
     return await getRepository(User)
       .createQueryBuilder("user")
       .where("nickname = :nickname", { nickname })
@@ -60,9 +53,7 @@ export class UserRepository
       .getOne();
   }
 
-  public async changeNickname(
-    data: ChangeNicknameRepository.Params
-  ): Promise<void> {
+  public async changeNickname(data: ChangeNicknameRepository.Params): Promise<void> {
     await getRepository(User)
       .createQueryBuilder("user")
       .update(User)

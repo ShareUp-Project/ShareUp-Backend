@@ -3,10 +3,7 @@ import { Controller, HttpResponse } from "@/presentation/protocols";
 import { alreadyExistsData, ok, serverError } from "@/presentation/helpers";
 
 export class SignUpController implements Controller {
-  constructor(
-    private readonly createUser: CreateUser,
-    private readonly findUser: FindUser
-  ) {}
+  constructor(private readonly createUser: CreateUser, private readonly findUser: FindUser) {}
 
   async handle(request: SignUpController.Request): Promise<HttpResponse> {
     try {

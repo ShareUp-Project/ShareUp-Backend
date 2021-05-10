@@ -3,10 +3,7 @@ import { Decrypter, Encrypter } from "@/data/protocols";
 import { sign, verify } from "jsonwebtoken";
 
 export class JwtAdapter implements Encrypter, Decrypter {
-  constructor(
-    private readonly accessSecret: string,
-    private readonly refreshSecret: string
-  ) {}
+  constructor(private readonly accessSecret: string, private readonly refreshSecret: string) {}
 
   async encryptAccess(identity: string): Promise<string> {
     return sign({ identity }, this.accessSecret, {

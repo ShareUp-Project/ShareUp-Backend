@@ -25,12 +25,7 @@ export class PostRepository
     GetUserPostsRepository,
     GetPopularPostsRepository {
   public async write(data: WritePostRepository.Params): Promise<void> {
-    await getRepository(Post)
-      .createQueryBuilder("post")
-      .insert()
-      .into(Post)
-      .values(data)
-      .execute();
+    await getRepository(Post).createQueryBuilder("post").insert().into(Post).values(data).execute();
   }
 
   public async get(data: GetPostsRepository.Params): Promise<any> {
@@ -71,9 +66,7 @@ export class PostRepository
       .execute();
   }
 
-  public async findOne(
-    data: FindPostRepository.Params
-  ): Promise<FindPostRepository.Result> {
+  public async findOne(data: FindPostRepository.Params): Promise<FindPostRepository.Result> {
     return await getRepository(Post)
       .createQueryBuilder("post")
       .where("id = :id", { id: data.id })
@@ -106,9 +99,7 @@ export class PostRepository
       .getOne();
   }
 
-  public async searchPosts(
-    data: SearchTagPostsRepository.Params
-  ): Promise<any> {
+  public async searchPosts(data: SearchTagPostsRepository.Params): Promise<any> {
     const qb = await getRepository(Post)
       .createQueryBuilder("post")
       .leftJoinAndSelect("post.user", "user")
@@ -129,9 +120,7 @@ export class PostRepository
                   .createQueryBuilder("post")
                   .select("post.id")
                   .leftJoin("post.hashtags", "hashtag")
-                  .where(
-                    `hashtag.tag = "${data.word}" OR post.title like "%${data.word}%"`
-                  )
+                  .where(`hashtag.tag = "${data.word}" OR post.title like "%${data.word}%"`)
                   .orderBy("post.createdAt", "DESC")
                   .skip(data.page * 7)
                   .limit(7)

@@ -5,9 +5,7 @@ import { Controller, HttpResponse } from "@/presentation/protocols";
 export class ChangeNicknameController implements Controller {
   constructor(private readonly changeNickname: ChangeNickname) {}
 
-  async handle(
-    request: ChangeNicknameController.Request
-  ): Promise<HttpResponse> {
+  async handle(request: ChangeNicknameController.Request): Promise<HttpResponse> {
     try {
       await this.changeNickname.changeNickname({
         userId: request.identity,

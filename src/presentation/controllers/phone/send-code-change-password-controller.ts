@@ -3,14 +3,9 @@ import { notFound, ok, serverError } from "@/presentation/helpers";
 import { Controller, HttpResponse } from "@/presentation/protocols";
 
 export class SendCodeChangePasswordController implements Controller {
-  constructor(
-    private readonly sendCode: SendCode,
-    private readonly findUser: FindUser
-  ) {}
+  constructor(private readonly sendCode: SendCode, private readonly findUser: FindUser) {}
 
-  async handle(
-    request: SendCodeChangePasswordController.Request
-  ): Promise<HttpResponse> {
+  async handle(request: SendCodeChangePasswordController.Request): Promise<HttpResponse> {
     try {
       const user = await this.findUser.findOne(request.phone);
       if (!user) return notFound();

@@ -1,9 +1,7 @@
 import { FindPost } from "@/domain/usecases";
 
 export interface FindPostRepository {
-  findOne: (
-    data: FindPostRepository.Params
-  ) => Promise<FindPostRepository.Result>;
+  findOne: (data: FindPostRepository.Params) => Promise<FindPostRepository.Result>;
 }
 
 export namespace FindPostRepository {

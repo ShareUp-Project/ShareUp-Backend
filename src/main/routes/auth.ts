@@ -28,9 +28,5 @@ export default (router: Router): void => {
     adaptRoute(makeEditorLoginController())
   );
 
-  router.get(
-    "/auth/refresh",
-    refresh,
-    adaptRoute(makeTokenRefreshController())
-  );
+  router.get("/auth/refresh", refresh, adaptRoute(makeTokenRefreshController()));
 };

@@ -19,6 +19,7 @@ export class WritePostController implements Controller {
       for (let image of request.images) {
         await this.addImage.add({ id: image["key"], postId });
       }
+
       if (typeof request.tags === "string") {
         await this.addHashtag.add({ tag: request.tags, postId });
         return ok({ message: "success" });

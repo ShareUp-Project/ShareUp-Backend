@@ -1,9 +1,7 @@
 import { FindOneView } from "@/domain/usecases";
 
 export interface FindOneViewRepository {
-  findOne: (
-    data: FindOneViewRepository.Params
-  ) => Promise<FindOneViewRepository.Result>;
+  findOne: (data: FindOneViewRepository.Params) => Promise<FindOneViewRepository.Result>;
 }
 
 export namespace FindOneViewRepository {

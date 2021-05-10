@@ -15,12 +15,7 @@ export class GetUserPostsController implements Controller {
       });
       const response = _.map(data, (e) => {
         e.isScrap = false;
-        if (
-          e.scraps.findIndex(
-            (i) => i.userId === request.identity && i.postId === e.id
-          ) > -1
-        )
-          e.isScrap = true;
+        if (e.scraps.findIndex((i) => i.userId === request.identity && i.postId === e.id) > -1) e.isScrap = true;
         e.scraps = e.scraps.length;
         e.views = e.views.length;
         e.hashtags = e.hashtags.map((e) => e.tag);

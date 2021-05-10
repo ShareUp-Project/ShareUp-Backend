@@ -3,11 +3,7 @@ import { Hasher, MakeId } from "@/data/protocols";
 import { CreateUserRepository } from "@/data/protocols/db";
 
 export class DbCreateUser implements CreateUser {
-  constructor(
-    private readonly createUserRepository: CreateUserRepository,
-    private readonly hasher: Hasher,
-    private readonly makeId: MakeId
-  ) {}
+  constructor(private readonly createUserRepository: CreateUserRepository, private readonly hasher: Hasher, private readonly makeId: MakeId) {}
 
   async create(data: CreateUser.Params): Promise<void> {
     const uuid = await this.makeId.makeId();

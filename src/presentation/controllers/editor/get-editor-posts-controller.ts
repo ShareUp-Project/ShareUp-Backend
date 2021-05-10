@@ -5,9 +5,7 @@ import { Controller, HttpResponse } from "@/presentation/protocols";
 export class GetEditorPostsController implements Controller {
   constructor(private readonly getEditorPosts: GetEditorPosts) {}
 
-  async handle(
-    request: GetEditorPostsController.Request
-  ): Promise<HttpResponse> {
+  async handle(request: GetEditorPostsController.Request): Promise<HttpResponse> {
     try {
       const data = await this.getEditorPosts.getEditorPosts({
         page: Number(request.page),

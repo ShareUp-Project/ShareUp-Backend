@@ -1,9 +1,7 @@
 import { FindOneWeeklyView } from "@/domain/usecases";
 
 export interface FindOneWeeklyViewRepository {
-  findOne: (
-    data: FindOneWeeklyViewRepository.Params
-  ) => Promise<FindOneWeeklyViewRepository.Result>;
+  findOne: (data: FindOneWeeklyViewRepository.Params) => Promise<FindOneWeeklyViewRepository.Result>;
 }
 
 export namespace FindOneWeeklyViewRepository {

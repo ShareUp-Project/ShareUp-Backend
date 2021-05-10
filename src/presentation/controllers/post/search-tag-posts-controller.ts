@@ -6,9 +6,7 @@ import _ from "lodash";
 export class SearchTagPostsController implements Controller {
   constructor(private readonly searchTagPosts: SearchTagPosts) {}
 
-  async handle(
-    request: SearchTagPostsController.Request
-  ): Promise<HttpResponse> {
+  async handle(request: SearchTagPostsController.Request): Promise<HttpResponse> {
     try {
       const data = await this.searchTagPosts.searchPosts({
         word: request.word,
@@ -16,12 +14,7 @@ export class SearchTagPostsController implements Controller {
       });
       const response = _.map(data, (e) => {
         e.isScrap = false;
-        if (
-          e.scraps.findIndex(
-            (i) => i.userId === request.identity && i.postId === e.id
-          ) > -1
-        )
-          e.isScrap = true;
+        if (e.scraps.findIndex((i) => i.userId === request.identity && i.postId === e.id) > -1) e.isScrap = true;
         e.scraps = e.scraps.length;
         e.views = e.views.length;
         e.hashtags = e.hashtags.map((e) => e.tag);

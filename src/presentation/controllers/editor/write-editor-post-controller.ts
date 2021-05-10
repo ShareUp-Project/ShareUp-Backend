@@ -5,9 +5,7 @@ import { Controller, HttpResponse } from "@/presentation/protocols";
 export class WriteEditorPostController implements Controller {
   constructor(private readonly writeEditorPost: WriteEditorPost) {}
 
-  async handle(
-    request: WriteEditorPostController.Request
-  ): Promise<HttpResponse> {
+  async handle(request: WriteEditorPostController.Request): Promise<HttpResponse> {
     try {
       if (request.image) request.image = request.image["key"];
       await this.writeEditorPost.write(request);
