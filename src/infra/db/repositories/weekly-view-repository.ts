@@ -1,5 +1,6 @@
 import {
   AddWeeklyViewRepository,
+  DeleteAllWeeklyViewRepository,
   FindOneWeeklyViewRepository,
 } from "@/data/protocols";
 import { WeeklyView } from "@/domain/entities";
@@ -7,7 +8,10 @@ import { EntityRepository, getRepository } from "typeorm";
 
 @EntityRepository(WeeklyView)
 export class WeeklyViewRepository
-  implements AddWeeklyViewRepository, FindOneWeeklyViewRepository {
+  implements
+    AddWeeklyViewRepository,
+    FindOneWeeklyViewRepository,
+    DeleteAllWeeklyViewRepository {
   public async add(data: AddWeeklyViewRepository.Params): Promise<void> {
     await getRepository(WeeklyView)
       .createQueryBuilder("weekly_view")
@@ -25,5 +29,13 @@ export class WeeklyViewRepository
       .where("user_id = :userId", { userId: data.userId })
       .andWhere("post_id = :postId", { postId: data.postId })
       .getOne();
+  }
+
+  public async deleteAll(): Promise<void> {
+    await getRepository(WeeklyView)
+      .createQueryBuilder("weekly_view")
+      .delete()
+      .from(WeeklyView)
+      .execute();
   }
 }
