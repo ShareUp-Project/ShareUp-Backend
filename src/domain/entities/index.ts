@@ -6,3 +6,4 @@ export * from "./scrap";
 export * from "./editor-post";
 export * from "./view";
 export * from "./weekly-view";
+export * from "./badge";
