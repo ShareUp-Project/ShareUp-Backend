@@ -1,20 +1,5 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryColumn,
-} from "typeorm";
-import {
-  User,
-  Image,
-  Hashtag,
-  Scrap,
-  View,
-  WeeklyView,
-} from "@/domain/entities";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
+import { User, Image, Hashtag, Scrap, View, WeeklyView } from "@/domain/entities";
 
 export enum Category {
   PAPER = "paper",
