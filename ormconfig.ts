@@ -1,15 +1,6 @@
 import config from "./src/main/config/env";
 import { ConnectionOptions } from "typeorm";
-import {
-  User,
-  Post,
-  Image,
-  Hashtag,
-  Scrap,
-  EditorPost,
-  View,
-  WeeklyView,
-} from "@/domain/entities";
+import { User, Post, Image, Hashtag, Scrap, EditorPost, View, WeeklyView, Badge } from "@/domain/entities";
 
 const connectionOptions: ConnectionOptions = {
   type: "mysql",
@@ -20,7 +11,7 @@ const connectionOptions: ConnectionOptions = {
   database: config.mysql.name,
   synchronize: true,
   logging: true,
-  entities: [User, Post, Image, Hashtag, Scrap, EditorPost, View, WeeklyView],
+  entities: [User, Post, Image, Hashtag, Scrap, EditorPost, View, WeeklyView, Badge],
 };
 
 export default connectionOptions;
