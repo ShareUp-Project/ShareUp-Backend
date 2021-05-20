@@ -6,3 +6,4 @@ export * from "./scrap-repository";
 export * from "./editor-post-repository";
 export * from "./view-repository";
 export * from "./weekly-view-repository";
+export * from "./badge-repository";
