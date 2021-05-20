@@ -1,4 +1,4 @@
-import { AddHashtagRepository, MakeId } from "@/data/protocols";
+import { AddHashtagRepository } from "@/data/protocols";
 import { AddHashtag } from "@/domain/usecases";
 
 export class DbAddHashtag implements AddHashtag {
