@@ -10,6 +10,7 @@ jobs:
   CI:
     runs-on: ubuntu-latest
     env:
+      SERVER_PORT: ${{ secrets.PORT }}
       DB_NAME: ${{ secrets.DB_NAME }}
       DB_HOST: ${{ secrets.DB_HOST }}
       DB_PORT: ${{ secrets.DB_PORT }}
@@ -17,6 +18,17 @@ jobs:
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       REFRESH_SECRET: ${{ secrets.REFRESH_SECRET }}
+      SENS_SERVICE_ID: ${{ secrets.SENS_SERVICE_ID }}
+      SENS_ACCESS_KEY: ${{ secrets.SENS_ACCESS_KEY }}
+      SENS_REFRESH_KEY: ${{ secrets.SENS_SECRET_KEY }}
+      SENS_PHONE: ${{ secrets.SENS_PHONE }}
+      REDIS_HOST: ${{ secrets.REDIS_HOST }}
+      S3_NAME: ${{ secrets.S3_NAME }}
+      S3_REGION: ${{ secrets.S3_REGION }}
+      S3_ACCESS: ${{ secrets.S3_ACCESS }}
+      S3_SECRET: ${{ secrets.S3_SECRET }}
+      EDITOR_ID: ${{ secrets.EDITOR_ID }}
+      EDITOR_PASSWORD: ${{ secrets.EDITOR_PASSWORD }}
     strategy:
       matrix:
         node-version: [10.19.0]
