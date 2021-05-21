@@ -1,6 +1,7 @@
 import {
   DeletePostRepository,
   FindPostRepository,
+  GetAllUserPostsRepository,
   GetDetailPostRepository,
   GetPopularPostsRepository,
   GetPostsRepository,
@@ -10,6 +11,7 @@ import {
   WritePostRepository,
 } from "@/data/protocols";
 import { Post } from "@/domain/entities";
+import { GetAllUserPosts } from "@/domain/usecases";
 import { EntityRepository, getRepository } from "typeorm";
 
 @EntityRepository(Post)
@@ -23,7 +25,9 @@ export class PostRepository
     GetDetailPostRepository,
     SearchTagPostsRepository,
     GetUserPostsRepository,
-    GetPopularPostsRepository {
+    GetPopularPostsRepository,
+    GetAllUserPostsRepository
+{
   public async write(data: WritePostRepository.Params): Promise<void> {
     await getRepository(Post).createQueryBuilder("post").insert().into(Post).values(data).execute();
   }
@@ -67,10 +71,7 @@ export class PostRepository
   }
 
   public async findOne(data: FindPostRepository.Params): Promise<FindPostRepository.Result> {
-    return await getRepository(Post)
-      .createQueryBuilder("post")
-      .where("id = :id", { id: data.id })
-      .getOne();
+    return await getRepository(Post).createQueryBuilder("post").where("id = :id", { id: data.id }).getOne();
   }
 
   public async getScrap(data: GetScrapPostsRepository.Params): Promise<any> {
@@ -176,6 +177,14 @@ export class PostRepository
       .groupBy("post.id, weekly_view.post_id")
       .orderBy("weekly_view", "DESC")
       .limit(4)
+      .getMany();
+  }
+
+  public async getAllUserPosts(data: GetAllUserPosts.Params): Promise<any> {
+    return await getRepository(Post)
+      .createQueryBuilder("post")
+      .where("post.userId = :userId", { userId: data.userId })
+      .andWhere("post.category = :category", { category: data.category })
       .getMany();
   }
 }
