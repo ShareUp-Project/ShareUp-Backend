@@ -58,6 +58,6 @@
     "@types/request": "^2.48.5"
   },
   "_moduleAliases": {
-    "@": "src"
+    "@": "dist/src"
   }
 }
