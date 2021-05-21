@@ -1,5 +1,5 @@
 export interface CreateUser {
-  create: (user: CreateUser.Params) => Promise<void>;
+  create: (user: CreateUser.Params) => Promise<string>;
 }
 
 export namespace CreateUser {
