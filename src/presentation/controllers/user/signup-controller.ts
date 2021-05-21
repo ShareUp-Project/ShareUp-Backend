@@ -13,8 +13,8 @@ export class SignUpController implements Controller {
     try {
       const user = await this.findUser.findOne(request.phone);
       if (user) return alreadyExistsData();
-      await this.createUser.create(request);
-      await this.createBadge.create({ userId: request.id });
+      const userId = await this.createUser.create(request);
+      await this.createBadge.create({ userId });
       return ok({ message: "success" });
     } catch (e) {
       return serverError(e);
