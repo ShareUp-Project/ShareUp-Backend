@@ -11,6 +11,7 @@ export class BadgeRepository implements CreateBadgeRepository, GetAllBadgesRepos
   public async getAllBadges(data: GetAllBadgesRepository.Params): Promise<GetAllBadgesRepository.Result> {
     return await getRepository(Badge)
       .createQueryBuilder("badge")
+      .select("first, paper, plastic, glass, styrofoam, vinyl, can, clothing")
       .where("badge.user_id = :userId", { userId: data.userId })
       .getOne();
   }
