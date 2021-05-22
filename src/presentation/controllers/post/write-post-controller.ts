@@ -1,13 +1,17 @@
 import { Category } from "@/domain/entities";
-import { AddHashtag, AddImage, WritePost } from "@/domain/usecases";
+import { AddHashtag, AddImage, GetAllBadges, GetAllUserPosts, UpgradeBadge, WritePost } from "@/domain/usecases";
 import { ok, serverError } from "@/presentation/helpers";
 import { Controller, HttpResponse } from "@/presentation/protocols";
+import { post } from "request";
 
 export class WritePostController implements Controller {
   constructor(
     private readonly writePost: WritePost,
     private readonly addHashtag: AddHashtag,
-    private readonly addImage: AddImage
+    private readonly addImage: AddImage,
+    private readonly getAllUserPosts: GetAllUserPosts,
+    private readonly getAllBadges: GetAllBadges,
+    private readonly upgradeBadge: UpgradeBadge
   ) {}
 
   async handle(request: WritePostController.Request): Promise<HttpResponse> {
@@ -32,9 +36,40 @@ export class WritePostController implements Controller {
           });
         }
       }
-      return ok({ message: "success" });
+      const badgeInfo = await this.upgrade({ ...request });
+      return ok({ message: "success", badgeInfo });
     } catch (e) {
       return serverError(e);
+    }
+  }
+
+  private async upgrade(data: { identity: string; category: Category }) {
+    try {
+      const { identity, category } = data;
+      if (category === Category.ETC) return {};
+      const badges = await this.getAllBadges.getAllBadges({ userId: identity });
+      if (badges.first === 0) {
+        await this.upgradeBadge.upgrade({ userId: identity, category: "first" });
+        return { category: "first", level: 1 };
+      }
+
+      const posts = await this.getAllUserPosts.getAllUserPosts({ userId: identity, category });
+      if (posts.length === 5 || posts.length === 10 || posts.length === 20) {
+        await this.upgradeBadge.upgrade({ userId: identity, category });
+        switch (posts.length) {
+          case 5:
+            return { category, level: 1 };
+          case 10:
+            return { category, level: 2 };
+          case 20:
+            return { category, level: 3 };
+          default:
+            throw new Error();
+        }
+      }
+      return {};
+    } catch (e) {
+      throw new Error("upgrade badge error");
     }
   }
 }
