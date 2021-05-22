@@ -6,6 +6,9 @@ export class Badge {
   userId: string;
 
   @Column({ default: 0 })
+  first: number;
+
+  @Column({ default: 0 })
   paper: number;
 
   @Column({ default: 0 })
