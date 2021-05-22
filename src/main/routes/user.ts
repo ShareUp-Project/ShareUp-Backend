@@ -7,14 +7,10 @@ import {
   makeChangeNicknameController,
 } from "@/main/factories";
 import { auth, Parameters, validationMiddleware } from "@/main/middlewares";
-import {
-  ChangePasswordSchema,
-  CreateUserSchema,
-  GetNicknameSchema,
-  NicknameCheckSchema,
-} from "@/validator/schemas";
+import { ChangePasswordSchema, CreateUserSchema, GetNicknameSchema, NicknameCheckSchema } from "@/validator/schemas";
 
 import { Router } from "express";
+import { makeGetBadgesController } from "../factories/controllers/user/get-badges-controller-factory";
 
 export default (router: Router): void => {
   router.post(
@@ -35,6 +31,8 @@ export default (router: Router): void => {
     }),
     adaptRoute(makeGetNicknameController())
   );
+
+  router.get("/users/badge", auth, adaptRoute(makeGetBadgesController()));
 
   router.post(
     "/users/nickname",
