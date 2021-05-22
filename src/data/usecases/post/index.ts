@@ -7,3 +7,4 @@ export * from "./db-get-detail-post";
 export * from "./db-search-tag-posts";
 export * from "./db-get-user-posts";
 export * from "./db-get-popular-posts";
+export * from "./db-get-all-user-posts";

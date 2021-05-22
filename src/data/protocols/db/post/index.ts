@@ -7,3 +7,4 @@ export * from "./get-detail-post-repository";
 export * from "./search-tag-posts-repository";
 export * from "./get-user-posts-repository";
 export * from "./get-popular-posts-repository";
+export * from "./get-all-user-posts-repository";

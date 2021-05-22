@@ -7,3 +7,4 @@ export * from "./get-detail-post-factory";
 export * from "./search-tag-posts-factory";
 export * from "./get-user-posts-factory";
 export * from "./get-popular-posts-factory";
+export * from "./get-all-user-posts-factory";
