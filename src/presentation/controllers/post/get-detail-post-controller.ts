@@ -47,6 +47,8 @@ export class GetDetailPostController implements Controller {
         "views",
         "user.id",
         "user.nickname",
+        "user.badgeCategory",
+        "user.badgeLevel",
         "images",
         "scraps",
         "isScrap",

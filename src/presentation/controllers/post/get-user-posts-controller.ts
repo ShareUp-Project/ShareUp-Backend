@@ -27,6 +27,8 @@ export class GetUserPostsController implements Controller {
           "views",
           "user.id",
           "user.nickname",
+          "user.badgeCategory",
+          "user.badgeLevel",
           "hashtags",
           "images",
           "scraps",
