@@ -2,6 +2,7 @@ import { Entity, PrimaryColumn, Column, OneToMany } from "typeorm";
 import { Post, Scrap, View, WeeklyView } from "@/domain/entities";
 
 export enum BadgeCategory {
+  DEFAULT = "default",
   FIRST = "first",
   PAPER = "paper",
   PLASTIC = "plastic",
@@ -26,7 +27,7 @@ export class User {
   @Column({ length: 10, unique: true, nullable: false })
   nickname: string;
 
-  @Column({ type: "enum", enum: BadgeCategory, name: "badge_category" })
+  @Column({ type: "enum", enum: BadgeCategory, default: BadgeCategory.DEFAULT, name: "badge_category" })
   badgeCategory: BadgeCategory;
 
   @Column({ nullable: false, default: 0, name: "badge_level" })
