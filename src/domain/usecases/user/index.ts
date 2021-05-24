@@ -3,3 +3,4 @@ export * from "./find-user";
 export * from "./change-password";
 export * from "./get-nickname";
 export * from "./change-nickname";
+export * from "./set-badge";

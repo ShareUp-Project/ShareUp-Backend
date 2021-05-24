@@ -4,3 +4,4 @@ export * from "./change-password-controller";
 export * from "./get-nickname-controller";
 export * from "./change-nickname-controller";
 export * from "./get-badges-controller";
+export * from "./set-badge-controller";
