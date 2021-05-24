@@ -5,12 +5,19 @@ import {
   makeChangePasswordController,
   makeGetNicknameController,
   makeChangeNicknameController,
+  makeSetBadgeController,
+  makeGetBadgesController,
 } from "@/main/factories";
 import { auth, Parameters, validationMiddleware } from "@/main/middlewares";
-import { ChangePasswordSchema, CreateUserSchema, GetNicknameSchema, NicknameCheckSchema } from "@/validator/schemas";
+import {
+  ChangePasswordSchema,
+  CreateUserSchema,
+  GetNicknameSchema,
+  NicknameCheckSchema,
+  SetBadgeSchema,
+} from "@/validator/schemas";
 
 import { Router } from "express";
-import { makeGetBadgesController } from "../factories/controllers/user/get-badges-controller-factory";
 
 export default (router: Router): void => {
   router.post(
@@ -33,6 +40,16 @@ export default (router: Router): void => {
   );
 
   router.get("/users/badge", auth, adaptRoute(makeGetBadgesController()));
+
+  router.put(
+    "/users/badge",
+    auth,
+    validationMiddleware({
+      schema: SetBadgeSchema,
+      parameters: Parameters.BODY,
+    }),
+    adaptRoute(makeSetBadgeController())
+  );
 
   router.post(
     "/users/nickname",
