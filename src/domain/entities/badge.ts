@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { User } from "@/domain/entities";
 
 @Entity()
 export class Badge {
@@ -28,4 +29,8 @@ export class Badge {
 
   @Column({ default: 0 })
   clothing: number;
+
+  @OneToOne(() => User)
+  @JoinColumn({ name: "user_id" })
+  user: User;
 }
