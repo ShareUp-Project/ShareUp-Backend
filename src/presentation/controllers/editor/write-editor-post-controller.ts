@@ -11,7 +11,6 @@ export class WriteEditorPostController implements Controller {
       await this.writeEditorPost.write(request);
       return ok({ message: "success" });
     } catch (e) {
-      console.log(e.message);
       return serverError(e);
     }
   }
