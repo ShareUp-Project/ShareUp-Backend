@@ -3,7 +3,7 @@ import {
   makeNicknameCheckController,
   makeSignupController,
   makeChangePasswordController,
-  makeGetNicknameController,
+  makeGetProfileController,
   makeChangeNicknameController,
   makeSetBadgeController,
   makeGetBadgesController,
@@ -12,7 +12,7 @@ import { auth, Parameters, validationMiddleware } from "@/main/middlewares";
 import {
   ChangePasswordSchema,
   CreateUserSchema,
-  GetNicknameSchema,
+  GetProfileSchema,
   NicknameCheckSchema,
   SetBadgeSchema,
 } from "@/validator/schemas";
@@ -30,13 +30,13 @@ export default (router: Router): void => {
   );
 
   router.get(
-    "/users/nickname/:id?",
+    "/users/profile/:id?",
     auth,
     validationMiddleware({
-      schema: GetNicknameSchema,
+      schema: GetProfileSchema,
       parameters: Parameters.PARAM,
     }),
-    adaptRoute(makeGetNicknameController())
+    adaptRoute(makeGetProfileController())
   );
 
   router.get("/users/badge", auth, adaptRoute(makeGetBadgesController()));

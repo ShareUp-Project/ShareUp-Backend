@@ -3,7 +3,7 @@ import {
   ChangePasswordRepository,
   CreateUserRepository,
   FindUserRepository,
-  GetNicknameRepository,
+  GetProfileRepository,
   SetBadgeRepository,
 } from "@/data/protocols";
 import { User } from "@/domain/entities";
@@ -15,7 +15,7 @@ export class UserRepository
     CreateUserRepository,
     FindUserRepository,
     ChangePasswordRepository,
-    GetNicknameRepository,
+    GetProfileRepository,
     ChangeNicknameRepository,
     SetBadgeRepository
 {
@@ -40,12 +40,8 @@ export class UserRepository
       .execute();
   }
 
-  public async getNickname(data: GetNicknameRepository.Params): Promise<GetNicknameRepository.Result> {
-    return await getRepository(User)
-      .createQueryBuilder("user")
-      .select("user.nickname")
-      .where("id = :id", { id: data.userId })
-      .getOne();
+  public async getProfile(data: GetProfileRepository.Params): Promise<GetProfileRepository.Result> {
+    return await getRepository(User).createQueryBuilder("user").where("id = :id", { id: data.userId }).getOne();
   }
 
   public async changeNickname(data: ChangeNicknameRepository.Params): Promise<void> {
