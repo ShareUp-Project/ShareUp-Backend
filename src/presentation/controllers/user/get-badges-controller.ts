@@ -9,7 +9,17 @@ export class GetBadgesController implements Controller {
   async handle(request: GetBadgesController.Request): Promise<HttpResponse> {
     try {
       const badges = await this.getAllBadges.getAllBadges({ userId: request.identity });
-      const response = _.pick(badges, ["first", "paper", "plastic", "glass", "styrofoam", "vinyl", "can", "clothing"]);
+      const response = _.pick(badges, [
+        "default",
+        "first",
+        "paper",
+        "plastic",
+        "glass",
+        "styrofoam",
+        "vinyl",
+        "can",
+        "clothing",
+      ]);
       return ok(response);
     } catch (e) {
       return serverError(e);
