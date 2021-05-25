@@ -6,6 +6,9 @@ export class Badge {
   @PrimaryColumn({ length: 45, name: "user_id" })
   userId: string;
 
+  @Column({ default: 1 })
+  default: number;
+
   @Column({ default: 0 })
   first: number;
 
