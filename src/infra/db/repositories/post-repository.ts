@@ -46,6 +46,7 @@ export class PostRepository
         .orderBy("post.createdAt", "DESC")
         .getMany();
     }
+
     return await getRepository(Post)
       .createQueryBuilder("post")
       .leftJoinAndSelect("post.user", "user")
@@ -94,7 +95,7 @@ export class PostRepository
                 (await getRepository(Post)
                   .createQueryBuilder("post")
                   .select("post.id")
-                  .leftJoin("post.hashtags", "hashtag")
+                  .leftJoin("post.scraps", "scrap")
                   .where(`scrap.user_id = "${data.userId}"`)
                   .orderBy("scrap.createdAt", "DESC")
                   .skip(data.page * 7)
