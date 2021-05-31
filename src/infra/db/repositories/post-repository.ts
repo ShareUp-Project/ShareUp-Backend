@@ -98,7 +98,7 @@ export class PostRepository
                   .leftJoin("post.scraps", "scrap")
                   .where(`scrap.user_id = "${data.userId}"`)
                   .orderBy("scrap.createdAt", "DESC")
-                  .skip(data.page * 7)
+                  .offset(data.page * 7)
                   .limit(7)
                   .getQuery()) +
                 ")",
