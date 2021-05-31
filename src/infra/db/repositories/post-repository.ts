@@ -151,9 +151,8 @@ export class PostRepository
             .from(
               "(" +
                 (await getRepository(Post)
-                  .createQueryBuilder("post1")
-                  .select("post1.id")
-                  .from(Post, "post")
+                  .createQueryBuilder("post")
+                  .select("post.id")
                   .where(`post.user_id = "${data.userId}"`)
                   .skip(data.page * 7)
                   .limit(7)
