@@ -75,17 +75,36 @@ export class PostRepository
   }
 
   public async getScrap(data: GetScrapPostsRepository.Params): Promise<any> {
-    return await getRepository(Post)
+    const qb = await getRepository(Post)
       .createQueryBuilder("post")
       .leftJoinAndSelect("post.user", "user")
       .leftJoinAndSelect("post.images", "image")
       .leftJoinAndSelect("post.hashtags", "hashtag")
       .leftJoinAndSelect("post.scraps", "scrap")
-      .leftJoinAndSelect("post.views", "view")
-      .where("scrap.user_id = :userId", { userId: data.userId })
-      .skip(data.page * 7)
-      .take(7)
-      .orderBy("scrap.createdAt")
+      .leftJoinAndSelect("post.views", "view");
+
+    return qb
+      .where(
+        "post.id IN" +
+          qb
+            .subQuery()
+            .select("*")
+            .from(
+              "(" +
+                (await getRepository(Post)
+                  .createQueryBuilder("post")
+                  .select("post.id")
+                  .leftJoin("post.hashtags", "hashtag")
+                  .where(`scrap.user_id = "${data.userId}"`)
+                  .orderBy("scrap.createdAt", "DESC")
+                  .skip(data.page * 7)
+                  .limit(7)
+                  .getQuery()) +
+                ")",
+              "tmp"
+            )
+            .getQuery()
+      )
       .getMany();
   }
 
