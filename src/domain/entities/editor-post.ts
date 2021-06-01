@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
 @Entity({ name: "editor_post" })
 export class EditorPost {
@@ -10,6 +10,9 @@ export class EditorPost {
 
   @Column({ length: 1000 })
   content: string;
+
+  @CreateDateColumn({ name: "created_at" })
+  createdAt: Date;
 
   @Column({ length: 100, nullable: true })
   image: string;
