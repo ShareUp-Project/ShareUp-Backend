@@ -18,7 +18,7 @@ export class BadgeRepository implements CreateBadgeRepository, GetAllBadgesRepos
   public async upgrade(data: UpgradeBadgeRepository.Params): Promise<void> {
     const repo = await getRepository(Badge);
     const badge = await repo.findOne(data.userId);
-    badge[data.category]++;
+    badge[data.category] = data.level;
     await repo.save(badge);
   }
 }

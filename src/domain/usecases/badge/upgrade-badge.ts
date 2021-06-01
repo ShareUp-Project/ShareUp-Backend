@@ -6,5 +6,6 @@ export namespace UpgradeBadge {
   export type Params = {
     userId: string;
     category: string;
+    level: number;
   };
 }

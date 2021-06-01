@@ -49,19 +49,21 @@ export class WritePostController implements Controller {
       if (category === Category.ETC) return {};
       const badges = await this.getAllBadges.getAllBadges({ userId: identity });
       if (badges.first === 0) {
-        await this.upgradeBadge.upgrade({ userId: identity, category: "first" });
+        await this.upgradeBadge.upgrade({ userId: identity, category: "first", level: 1 });
         return { category: "first", level: 1 };
       }
 
       const posts = await this.getAllUserPosts.getAllUserPosts({ userId: identity, category });
       if (posts.length === 5 || posts.length === 10 || posts.length === 20) {
-        await this.upgradeBadge.upgrade({ userId: identity, category });
         switch (posts.length) {
           case 5:
+            await this.upgradeBadge.upgrade({ userId: identity, category, level: 1 });
             return { category, level: 1 };
           case 10:
+            await this.upgradeBadge.upgrade({ userId: identity, category, level: 2 });
             return { category, level: 2 };
           case 20:
+            await this.upgradeBadge.upgrade({ userId: identity, category, level: 3 });
             return { category, level: 3 };
           default:
             throw new Error();
