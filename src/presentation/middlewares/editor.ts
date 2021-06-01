@@ -1,11 +1,6 @@
 import { Decrypter } from "@/data/protocols";
 import { HttpResponse, Middleware } from "@/presentation/protocols";
-import {
-  forbidden,
-  isNotEditor,
-  ok,
-  unauthorized,
-} from "@/presentation/helpers";
+import { forbidden, isNotEditor, ok, unauthorized } from "@/presentation/helpers";
 import env from "@/main/config/env";
 
 export class EditorAuthMiddleware implements Middleware {
