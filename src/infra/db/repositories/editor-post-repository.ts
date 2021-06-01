@@ -11,7 +11,7 @@ export class EditorPostRepository implements WriteEditorPostRepository, GetEdito
   async getEditorPosts(data: GetEditorPostsRepository.Params): Promise<any> {
     return await getRepository(EditorPost)
       .createQueryBuilder("editor_post")
-      .orderBy("editor_post", "DESC")
+      .orderBy("editor_post.created_at", "DESC")
       .offset(data.page * 10)
       .limit(10)
       .getMany();
