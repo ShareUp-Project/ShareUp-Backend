@@ -5,5 +5,7 @@ export const CreateUserSchema = Joi.object().keys({
   password: Joi.string()
     .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)
     .required(),
-  nickname: Joi.string().min(2).max(10).required(),
+  nickname: Joi.string()
+    .regex(/^[가-힣a-zA-Z0-9]{2,10}$/)
+    .required(),
 });
