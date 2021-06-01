@@ -19,7 +19,7 @@ export class JwtAdapter implements Encrypter, Decrypter {
 
   async encryptEditor(identity: string): Promise<string> {
     return sign({ identity }, this.accessSecret, {
-      expiresIn: "100d",
+      expiresIn: "7d",
     });
   }
 
