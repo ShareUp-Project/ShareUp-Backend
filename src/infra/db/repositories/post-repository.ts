@@ -142,7 +142,7 @@ export class PostRepository
                   .select("post.id")
                   .distinct(true)
                   .leftJoin("post.hashtags", "hashtag")
-                  .where(`hashtag.tag = "${data.word}" OR post.title like "%${data.word}%"`)
+                  .where(`post.title like "%${data.word}%" OR hashtag.tag = "${data.word}"`)
                   .orderBy("post.createdAt", "DESC")
                   .offset(data.page * 7)
                   .limit(7)
