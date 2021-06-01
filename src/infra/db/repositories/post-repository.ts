@@ -140,10 +140,11 @@ export class PostRepository
                 (await getRepository(Post)
                   .createQueryBuilder("post")
                   .select("post.id")
+                  .distinct(true)
                   .leftJoin("post.hashtags", "hashtag")
                   .where(`hashtag.tag = "${data.word}" OR post.title like "%${data.word}%"`)
                   .orderBy("post.createdAt", "DESC")
-                  .skip(data.page * 7)
+                  .offset(data.page * 7)
                   .limit(7)
                   .getQuery()) +
                 ")",
