@@ -33,7 +33,7 @@ export class Badge {
   @Column({ default: 0 })
   clothing: number;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, { onUpdate: "CASCADE", onDelete: "CASCADE" })
   @JoinColumn({ name: "user_id" })
   user: User;
 }
