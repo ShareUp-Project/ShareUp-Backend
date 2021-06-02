@@ -57,12 +57,15 @@ export class WritePostController implements Controller {
       if (posts.length === 5 || posts.length === 10 || posts.length === 20) {
         switch (posts.length) {
           case 5:
+            if (badges[category] >= 1) return {};
             await this.upgradeBadge.upgrade({ userId: identity, category, level: 1 });
             return { category, level: 1 };
           case 10:
+            if (badges[category] >= 2) return {};
             await this.upgradeBadge.upgrade({ userId: identity, category, level: 2 });
             return { category, level: 2 };
           case 20:
+            if (badges[category] >= 3) return {};
             await this.upgradeBadge.upgrade({ userId: identity, category, level: 3 });
             return { category, level: 3 };
           default:
